@@ -1,0 +1,430 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+	<channel>
+		<title>Your New Jekyll Site</title>
+		<description></description>
+		<link></link>
+		<atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
+		
+			<item>
+				<title>Welcome to Jekyll!</title>
+				<description>&lt;p&gt;You&amp;#39;ll find this post in your &lt;code&gt;_posts&lt;/code&gt; directory - edit this post and re-build (or run with the &lt;code&gt;-w&lt;/code&gt; switch) to see your changes!
+To add new posts, simply add a file in the &lt;code&gt;_posts&lt;/code&gt; directory that follows the convention: YYYY-MM-DD-name-of-post.ext.&lt;/p&gt;
+
+&lt;p&gt;Jekyll also offers powerful support for code snippets:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ruby&quot;&gt;&lt;span class=&quot;k&quot;&gt;def&lt;/span&gt; &lt;span class=&quot;nf&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+  &lt;span class=&quot;nb&quot;&gt;puts&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Hi, &lt;/span&gt;&lt;span class=&quot;si&quot;&gt;#{&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;name&lt;/span&gt;&lt;span class=&quot;si&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;end&lt;/span&gt;
+&lt;span class=&quot;n&quot;&gt;print_hi&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;(&lt;/span&gt;&lt;span class=&quot;s1&quot;&gt;&amp;#39;Tom&amp;#39;&lt;/span&gt;&lt;span class=&quot;p&quot;&gt;)&lt;/span&gt;
+&lt;span class=&quot;c1&quot;&gt;#=&amp;gt; prints &amp;#39;Hi, Tom&amp;#39; to STDOUT.&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Check out the &lt;a href=&quot;http://jekyllrb.com&quot;&gt;Jekyll docs&lt;/a&gt; for more info on how to get the most out of Jekyll. File all bugs/feature requests at &lt;a href=&quot;https://github.com/mojombo/jekyll&quot;&gt;Jekyll&amp;#39;s GitHub repo&lt;/a&gt;.&lt;/p&gt;
+</description>
+				<pubDate>Mon, 07 Oct 2013 23:46:29 +0200</pubDate>
+				<link>/jekyll/update/2013/10/07/welcome-to-jekyll.html</link>
+				<guid isPermaLink="true">/jekyll/update/2013/10/07/welcome-to-jekyll.html</guid>
+			</item>
+		
+			<item>
+				<title>Cent OS ldap</title>
+				<description>&lt;p&gt;As of today I spent 2 evenings searching for one simple option.&lt;/p&gt;
+
+&lt;p&gt;But first things first. I am configuring a Cent OS 6.4 VPS to host a few services. Most if not all of which have LDAP-support. So I wanted slapd, the openldap daemon of Cent OS, to listen only locally.&lt;/p&gt;
+
+&lt;p&gt;In the process of setting up that daemon I followed &lt;a href=&quot;http://www.6tech.org/2013/01/ldap-server-and-centos-6-3/&quot;&gt;this great walkthrough by 6tech&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;In order to restrict ldap to localhost some further infomation is needed. 
+* How does the openldap-server choose its interface (and set its ports)?
+* Where do you configure that?&lt;/p&gt;
+
+&lt;p&gt;Basic information on its listener can be found  in the &lt;a href=&quot;http://www.openldap.org/doc/admin24/runningslapd.html&quot;&gt;openldap documentation&lt;/a&gt;. The interesting part is the one about the &amp;#39;-h&amp;#39; option.&lt;/p&gt;
+
+&lt;p&gt;Basically the server has 3 interfaces:
+1. the normal ldap interface (URL: ldap:/...)
+2. ldap over SSL (URL: ldaps:/...)
+3. IPC(Unix domain socket) (URL: ldapi:/...)&lt;/p&gt;
+
+&lt;p&gt;In Cent OS 6.4 these are configured in &lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;vim /etc/sysconfig/ldap
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;With the help of the comments this file is pretty self-explanatory. So I changed every &amp;#39;yes&amp;#39; to &amp;#39;no&amp;#39; and added:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;ini&quot;&gt;&lt;span class=&quot;na&quot;&gt;SLAPD_URLS&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s&quot;&gt;&amp;quot;ldap://127.0.0.1 ldaps://127.0.0.1&amp;quot;&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Thanks to TrevorH1 in #centos on irc.freenode.net &lt;/p&gt;
+</description>
+				<pubDate>Mon, 27 May 2013 00:00:00 +0200</pubDate>
+				<link>/ldap/server/vps/2013/05/27/Cent-OS-6.4-openldap-slapd-localhost-only.html</link>
+				<guid isPermaLink="true">/ldap/server/vps/2013/05/27/Cent-OS-6.4-openldap-slapd-localhost-only.html</guid>
+			</item>
+		
+			<item>
+				<title>Get version of OS</title>
+				<description>&lt;h1&gt;Where am I?&lt;/h1&gt;
+
+&lt;p&gt;If it&amp;#39;s at work or at home, people like us most often have more than just one computer. These might just stand next to you or in an other room and you want that one pc to handle this one task you need to procede.
+No problem just install a piece of software and you set ... nope, doesn&amp;#39;t work like that.&lt;/p&gt;
+
+&lt;p&gt;Often enough you can&amp;#39;t reach those machine because they are in a subsidary 100 miles away or you are just too lazy to walk up there to check whether it&amp;#39;s the right OS and version of that OS.&lt;/p&gt;
+
+&lt;p&gt;But hey that&amp;#39;s no problem. Everything is wired up, so grab that console and connect over there. 
+But where did you land?&lt;/p&gt;
+
+&lt;p&gt;Let&amp;#39;s have a quick check. Should also be no problem. That &lt;a href=&quot;http://en.wikipedia.org/wiki/Posix&quot;&gt;POSIX-Standard&lt;/a&gt; from the 80ies will do. Just have a quick look and yep, there is some handy &lt;a href=&quot;http://pubs.opengroup.org/onlinepubs/9699919799/&quot;&gt;programm for that&lt;/a&gt;. So:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;uname -s
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Wow, that really doesn&amp;#39;t help. So let&amp;#39;s look at all information:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;uname -a
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and get an output like:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;Linux hXXXXXX.myserver.net 2.6.32-028stab091.2 &lt;span class=&quot;c&quot;&gt;#1 SMP Fri Jun 3 00:02:40 MSD 2011 i686 GNU/Linux&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;Darwin myBook-2.local 10.8.0 Darwin Kernel Version 10.8.0: Tue Jun 7 16:33:36 PDT 2011; root:xnu-1504.15.3~1/RELEASE_I386 i386
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;&lt;irony&gt;Jeah - now I know that my time is set wrong ...&lt;/irony&gt;&lt;/p&gt;
+
+&lt;p&gt;Wikipedia has a nice list of uname-output &lt;a href=&quot;http://en.wikipedia.org/wiki/Uname&quot;&gt;here&lt;/a&gt;, but these cryptic numbers don&amp;#39;t really help. On *nix-system you can often find usefully information with:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;cat /etc/issue
+&lt;span class=&quot;c&quot;&gt;# Just for example&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# ================&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Debian GNU/Linux 6.0 \n \l&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# CentOS release 6.4 (Final)&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Kernel \r on an \m&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;#&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# Ubuntu 12.04.2 LTS \n \l&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;That one is easy to remember, but for Macs I always end up googling. So this snippet is for &lt;em&gt;drum roll&lt;/em&gt; :&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;system_profiler SPSoftwareDataType
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Jepp, almost as easy to remember as the previous line ... ;)&lt;/p&gt;
+
+&lt;p&gt;There are a few other tipps and tweaks to get the OS-Version like:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;lsb_release -a
+cat /proc/version
+cat /etc/issue.net
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;and others. So have fun exploring and bye bye.&lt;/p&gt;
+</description>
+				<pubDate>Mon, 06 May 2013 00:00:00 +0200</pubDate>
+				<link>/os/unix/linux/macosx/2013/05/06/Get-version-of-OS.html</link>
+				<guid isPermaLink="true">/os/unix/linux/macosx/2013/05/06/Get-version-of-OS.html</guid>
+			</item>
+		
+			<item>
+				<title>Flylatex - up, up in the sky ...</title>
+				<description>&lt;h1&gt;FLYLATEX - who, where and what???&lt;/h1&gt;
+
+&lt;p&gt;A few weeks ago I registered to &lt;a href=&quot;https://www.sharelatex.com/&quot;&gt;sharelatex&lt;/a&gt; in the hope to get an office in the cloud with the best type setting that is available. &lt;/p&gt;
+
+&lt;p&gt;The idea is really nice but it always feels kind of wrong giving your data to someone else. So when I read about Daniel Alabis release of flylatex at Hacker News, I instantly forked it :) &lt;/p&gt;
+
+&lt;h2&gt;Prerequisites&lt;/h2&gt;
+
+&lt;p&gt;All you need to run flylatex is descriped at the &lt;a href=&quot;https://github.com/alabid/flylatex&quot;&gt;github site&lt;/a&gt; - in a README.md. The basic requirements are&lt;/p&gt;
+
+&lt;ul&gt;
+&lt;li&gt;&lt;a href=&quot;http://nodejs.org/&quot;&gt;nodejs&lt;/a&gt;&lt;/li&gt;
+&lt;li&gt;npm(comes with nodejs usually ...)&lt;/li&gt;
+&lt;li&gt;&lt;a href=&quot;http://www.mongodb.org/&quot;&gt;mongodb&lt;/a&gt;&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;So fire up that Ubuntu 12.04.2 LTS and go.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;apt-cache search nodejs
+apt-cache showpkg nodejs
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;STOP - this version is from the stone age or something. So let\&amp;#39;s ask my &lt;a href=&quot;http://www.giyf.com/&quot;&gt;friend&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;Jepp, &lt;a href=&quot;https://launchpad.net/%7Echris-lea/+archive/node.js/&quot;&gt;this ppa&lt;/a&gt; is what I wanted.&lt;/p&gt;
+
+&lt;p&gt;So there it goes:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sudo add-apt-repository ppa:chris-lea/node.js
+sudo apt-get update
+sudo apt-get install nodejs
+nodejs -v // v0.10.0 - okay
+npm -v // 1.2.14 - kk, too
+apt-cache search mongodb
+apt-cache showpkg mongodb // 2.0.4 - damn that 0.4 releases behind right now ... *arg* never mind
+sudo apt-get install mongodb
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Okay, that runs a mongodb right after installing ... hmm ... let&amp;#39;s have a look:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; /etc/init
+ls -al | grep mongo // mongodb.conf
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;So it&amp;#39;s an &lt;a href=&quot;http://upstart.ubuntu.com/&quot;&gt;upstart job&lt;/a&gt;. That&amp;#39;s okay for a server, but this time I sit in front of my laptop and just want to fiddle about it a bit &lt;em&gt;before&lt;/em&gt; deploying it to my server. So:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sudo vim /etc/init/mongodb.conf
+:%s/start&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;on/#start&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;on/gc
+:x
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Now we should be ready.&lt;/p&gt;
+
+&lt;p&gt;Almost - I forgot a slightly important part. I already had done:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sudo apt-get install texlive-full
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;(Attention: this download a few gigs of binaries and installs them after that - this could be a looong procedure.)&lt;/p&gt;
+
+&lt;h2&gt;First start&lt;/h2&gt;
+
+&lt;p&gt;So now it\&amp;#39;s time to check out:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;git clone https://github.com/alabid/flylatex.git
+&lt;span class=&quot;nb&quot;&gt;cd &lt;/span&gt;flylatex
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Grep all dependencies:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;npm install -d
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Customize configuration:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;vim configs.js
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;... I just commented out &lt;em&gt;path: ...&lt;/em&gt; (:%s/path:/\/\/path:/gc)&lt;/p&gt;
+
+&lt;p&gt;And now &lt;em&gt;drum roll&lt;/em&gt;:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;nodejs app.js
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Ah the output points us to:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;lynx localhost:3000
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Just kiddin&amp;#39;. It seems to work with lynx but I recommend using a full blown graphical browser like luakit or uzbl and just have fun!&lt;/p&gt;
+
+&lt;h2&gt;The end - an afterword&lt;/h2&gt;
+
+&lt;p&gt;From now on you must remember to&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sudo service mongodb start
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;before &lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &amp;lt;my flylatex dir&amp;gt;
+nodejs app.js
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;HF :D&lt;/h2&gt;
+</description>
+				<pubDate>Thu, 21 Mar 2013 00:00:00 +0100</pubDate>
+				<link>/latex/bash/unix/2013/03/21/FLYLATEX-up-up-in-the-sky.html</link>
+				<guid isPermaLink="true">/latex/bash/unix/2013/03/21/FLYLATEX-up-up-in-the-sky.html</guid>
+			</item>
+		
+			<item>
+				<title>Stop mysql & apache from starting automatically</title>
+				<description>&lt;h1&gt;Diffrent worlds&lt;/h1&gt;
+
+&lt;p&gt;The XAMPP is quite convenient. It provides everything you need to quickly develop a simple website. But sometime you want the full package to enable mods like mod_userdir and such a like whitout running apache &amp;amp; mysql on bootup on your private part time development laptop for example.&lt;/p&gt;
+
+&lt;p&gt;It is really simple to install those packages and only activate them on demand.&lt;/p&gt;
+
+&lt;p&gt;To do so you obviously need to install ( or have them installed already ) and know how the get started. On my Ubuntu 12.04 these packages use diffrent methods for autostarting.&lt;/p&gt;
+
+&lt;p&gt;While &lt;em&gt;apache&lt;/em&gt; is still started by an init-script, &lt;em&gt;mysql&lt;/em&gt; is already an upstart job.&lt;/p&gt;
+
+&lt;h2&gt;Install&lt;/h2&gt;
+
+&lt;p&gt;Just a quick remark: I recommend installing &lt;em&gt;mysql-workbench&lt;/em&gt; also.
+So:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sudo apt-get install mysql-server mysql-client mysql-workbench
+sudo apt-get install apache2
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h2&gt;Deactivate autostart&lt;/h2&gt;
+
+&lt;p&gt;Now it is time to deactivate them both.&lt;/p&gt;
+
+&lt;h3&gt;apache aka init&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;apache&lt;/em&gt; gets started via an &lt;a href=&quot;http://en.wikipedia.org/wiki/Init&quot;&gt;init-script&lt;/a&gt; on Ubuntu 12.04.2 LTS ( &lt;code&gt;cat /etc/issue&lt;/code&gt; ). These script can be managed by &lt;em&gt;update-rc.d&lt;/em&gt;, so the manpage is a good start for more information. To fully understand that manpage you also need to know the diffrent run-levels and their purpose, which will lead you to the &lt;a href=&quot;http://en.wikipedia.org/wiki/Runlevel&quot;&gt;Linux Standard Base specification&lt;/a&gt;. Finally it is obvious: Just disabling auto startup is the only reasonable way to go, since maybe autostart is need some day in future ...
+So:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sudo update-rc.d -f apache2 disable
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;mysql aka upstart&lt;/h3&gt;
+
+&lt;p&gt;&lt;em&gt;mysql&lt;/em&gt; is invoked by &lt;a href=&quot;http://en.wikipedia.org/wiki/Upstart&quot;&gt;upstart&lt;/a&gt;. This is Ubuntu&amp;#39;s &amp;#39;own&amp;#39; startup mechanism. &lt;a href=&quot;http://upstart.ubuntu.com/getting-started.html&quot;&gt;This&lt;/a&gt; is where you can get the basics.
+To make a long story short:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;sudo vim /etc/init/mysql.conf
+:% s/start&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;on&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;runlevel/#start&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;on&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;runlevel/gc
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;h3&gt;Restart ...&lt;/h3&gt;
+
+&lt;p&gt;... and see if it works&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;ps aux | grep mysql
+ps aux | grep apache
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</description>
+				<pubDate>Mon, 18 Mar 2013 00:00:00 +0100</pubDate>
+				<link>/mysql/apache/upstart/2013/03/18/Stop-mysql-and-apache-from-starting-automatically.html</link>
+				<guid isPermaLink="true">/mysql/apache/upstart/2013/03/18/Stop-mysql-and-apache-from-starting-automatically.html</guid>
+			</item>
+		
+			<item>
+				<title>How to keep your projects in sync</title>
+				<description>&lt;h1&gt;Cluttered&lt;/h1&gt;
+
+&lt;p&gt;What once started as hobby is now my job. I am a dev. So I work on projects. &lt;/p&gt;
+
+&lt;p&gt;When I was new on that I stored my projects just where the IDE wanted me to store it ( like ~/workspace ). But soon this got cluttered - diffrent IDEs, diffrent VCSs, diffrent folders in diffrent paths and no clue where that one project is, you worked on half a year ago and now it needs an update.&lt;/p&gt;
+
+&lt;p&gt;Right now, all my projects are in &lt;em&gt;~/projects&lt;/em&gt; and then ordered by the domain which holds the VCS repository. Luckily there are only &lt;em&gt;svn&lt;/em&gt; und &lt;em&gt;git&lt;/em&gt; repos. &lt;/p&gt;
+
+&lt;p&gt;Keeping them in sync was no problem in the beginning, but over the years it got annoying because I had no &lt;em&gt;update all&lt;/em&gt; command, so I had to &amp;quot;cd&amp;quot; to the root of all depending repos, &amp;quot;Insert VCS update command here&amp;quot; these depending repos, &amp;quot;Insert same VCS update command here&amp;quot; the repo I wanted to work with. This does not sound like much but there is a point when too many repos need to be updated and you occassionally forget one and waste hours screwing around.&lt;/p&gt;
+
+&lt;p&gt;Putting together a script to update all git repos was easy, but when I tried to use &lt;em&gt;find&lt;/em&gt; (the swiss army knife of searching your stuff) to only call a command in the root folder of a repo I became desperate.&lt;/p&gt;
+
+&lt;p&gt;Like almost always &lt;a href=&quot;http://www.giyf.com/&quot;&gt;Google was my friend&lt;/a&gt;. I found &lt;a href=&quot;http://blog.mycila.com/2009/07/recursive-svn-update.html&quot;&gt;Mathieu Carbou&amp;#39;s script&lt;/a&gt; and was able to put together this  one:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;count&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;0
+&lt;span class=&quot;nv&quot;&gt;curDir&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;pwd&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
+&lt;span class=&quot;nv&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;s2&quot;&gt;&amp;quot;.&amp;quot;&lt;/span&gt;
+
+&lt;span class=&quot;c&quot;&gt;# Thank you, Mathieu Carbou&lt;/span&gt;
+&lt;span class=&quot;c&quot;&gt;# http://blog.mycila.com/2009/07/recursive-svn-update.html&lt;/span&gt;
+
+update &lt;span class=&quot;o&quot;&gt;()&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;{&lt;/span&gt;
+    &lt;span class=&quot;c&quot;&gt;#echo &amp;quot;Call to update ($1)&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; -d &lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;/.svn &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;then&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;        &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Updating $1...&amp;quot;&lt;/span&gt;
+        svn up &lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;
+    &lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+        &lt;span class=&quot;c&quot;&gt;# echo `ls`&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;i in &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;ls &lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
+        &lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;            if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; -d &lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;/&lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;then&lt;/span&gt;
+            &lt;span class=&quot;c&quot;&gt;# echo &amp;quot;Descending to $i...&amp;quot;&lt;/span&gt;
+                update &lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;/&lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt;
+            &lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;        done&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;    fi&lt;/span&gt;
+&lt;span class=&quot;o&quot;&gt;}&lt;/span&gt;
+ 
+&lt;span class=&quot;k&quot;&gt;if&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;[&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;$1&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;==&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;&amp;quot;&lt;/span&gt; &lt;span class=&quot;o&quot;&gt;]&lt;/span&gt;; &lt;span class=&quot;k&quot;&gt;then&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Updating all SVN projects in ${curDir} ...&amp;quot;&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;else&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; &lt;span class=&quot;s2&quot;&gt;&amp;quot;Updating all SVN projects in $1...&amp;quot;&lt;/span&gt;
+    &lt;span class=&quot;nv&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;fi&lt;/span&gt;
+
+update &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;i in &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;find &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;path&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt; -iname &lt;span class=&quot;s2&quot;&gt;&amp;quot;.git&amp;quot;&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;do&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;    &lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;dirname &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;i&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;
+    git pull
+    &lt;span class=&quot;nb&quot;&gt;cd&lt;/span&gt; &lt;span class=&quot;k&quot;&gt;${&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;curDir&lt;/span&gt;&lt;span class=&quot;k&quot;&gt;}&lt;/span&gt;
+&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Just &lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;chmod +x &amp;lt;script&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;this and live happily ever after :)&lt;/p&gt;
+</description>
+				<pubDate>Mon, 18 Mar 2013 00:00:00 +0100</pubDate>
+				<link>/subversion/svn/git/bash/sync/2013/03/18/How-to-keep-your-projects-in-sync.html</link>
+				<guid isPermaLink="true">/subversion/svn/git/bash/sync/2013/03/18/How-to-keep-your-projects-in-sync.html</guid>
+			</item>
+		
+			<item>
+				<title>unix rename for Mac OS X</title>
+				<description>&lt;p&gt;Most of the time I am using Linux – at work, on my pc-tower, … . The longer you use CLI the more you see it’s advantages. You learn stuff once and use it everywhere – POSIX compliance rocks. But there was one thing missing. A small addition to the POSIX-standard which is available on almost every Linux-system.&lt;/p&gt;
+
+&lt;p&gt;I’m talking about the ‘rename’-command which works like that:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rename &amp;lt;RegEx&amp;gt; &amp;lt;file or list of files&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;But building your own rename-command on Mac is quite easy and you can do it with tools that are already on your system. So just write this little bash-script:&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;c&quot;&gt;#!/bin/bash&lt;/span&gt;
+
+&lt;span class=&quot;nv&quot;&gt;REGEX&lt;/span&gt;&lt;span class=&quot;o&quot;&gt;=&lt;/span&gt;&lt;span class=&quot;nv&quot;&gt;$1&lt;/span&gt;
+
+&lt;span class=&quot;nb&quot;&gt;shift&lt;/span&gt;
+
+&lt;span class=&quot;k&quot;&gt;for &lt;/span&gt;i in &lt;span class=&quot;nv&quot;&gt;$@&lt;/span&gt;; mv &lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt; &lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;&lt;span class=&quot;nb&quot;&gt;echo&lt;/span&gt; “&lt;span class=&quot;nv&quot;&gt;$i&lt;/span&gt;” | sed &lt;span class=&quot;nv&quot;&gt;$REGEX&lt;/span&gt;&lt;span class=&quot;sb&quot;&gt;`&lt;/span&gt;;&lt;span class=&quot;k&quot;&gt;done&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Name it “rename” and make it executable.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;chmod +x rename
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;And finally move it to the right spot.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;mv rename /bin/
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+
+&lt;p&gt;Et voila. My favorite command works again.&lt;/p&gt;
+
+&lt;div class=&quot;highlight&quot;&gt;&lt;pre&gt;&lt;code class=&quot;bash&quot;&gt;&lt;span class=&quot;nv&quot;&gt;$ &lt;/span&gt;rename ‘s/&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;/&lt;span class=&quot;se&quot;&gt;\_&lt;/span&gt;/g’ This&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;lousy&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;filename&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;contains&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;too&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;many&lt;span class=&quot;se&quot;&gt;\ &lt;/span&gt;spaces.txt
+&lt;/code&gt;&lt;/pre&gt;&lt;/div&gt;
+</description>
+				<pubDate>Mon, 11 Mar 2013 00:00:00 +0100</pubDate>
+				<link>/unix/linux/macosx/2013/03/11/unix-rename-for-Mac-OS-X.html</link>
+				<guid isPermaLink="true">/unix/linux/macosx/2013/03/11/unix-rename-for-Mac-OS-X.html</guid>
+			</item>
+		
+			<item>
+				<title>First things first</title>
+				<description>&lt;h1&gt;First things first&lt;/h1&gt;
+
+&lt;p&gt;To get a grip on markdown right from the start I highly recommend using a cheat sheet.
+For markdown on github this could be:&lt;/p&gt;
+
+&lt;p&gt;&lt;a href=&quot;https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet&quot;&gt;adam-p&amp;#39;s Markdown-Cheatsheet&lt;/a&gt;&lt;/p&gt;
+</description>
+				<pubDate>Tue, 05 Mar 2013 00:00:00 +0100</pubDate>
+				<link>/markdown/2013/03/05/Cheat-Sheet.html</link>
+				<guid isPermaLink="true">/markdown/2013/03/05/Cheat-Sheet.html</guid>
+			</item>
+		
+	</channel>
+</rss>
