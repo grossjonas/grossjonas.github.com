@@ -1,0 +1,36 @@
+---
+layout: post
+title:  "Cent OS ldap"
+categories: ldap server vps 
+---
+
+As of today I spent 2 evenings searching for one simple option.
+
+But first things first. I am configuring a Cent OS 6.4 VPS to host a few services. Most if not all of which have LDAP-support. So I wanted slapd, the openldap daemon of Cent OS, to listen only locally.
+
+In the process of setting up that daemon I followed [this great walkthrough by 6tech](http://www.6tech.org/2013/01/ldap-server-and-centos-6-3/).
+
+In order to restrict ldap to localhost some further infomation is needed. 
+* How does the openldap-server choose its interface (and set its ports)?
+* Where do you configure that?
+
+Basic information on its listener can be found  in the [openldap documentation](http://www.openldap.org/doc/admin24/runningslapd.html). The interesting part is the one about the '-h' option.
+
+Basically the server has 3 interfaces:
+1. the normal ldap interface (URL: ldap:/...)
+2. ldap over SSL (URL: ldaps:/...)
+3. IPC(Unix domain socket) (URL: ldapi:/...)
+
+In Cent OS 6.4 these are configured in 
+{% highlight bash %}
+vim /etc/sysconfig/ldap
+{% endhighlight %}
+
+With the help of the comments this file is pretty self-explanatory. So I changed every 'yes' to 'no' and added:
+
+{% highlight ini %}
+SLAPD_URLS="ldap://127.0.0.1 ldaps://127.0.0.1"
+{% endhighlight %}
+
+Thanks to TrevorH1 in #centos on irc.freenode.net 
+
