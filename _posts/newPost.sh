@@ -4,9 +4,11 @@ title=""
 creationDate=$(date --iso-8601)
 
 if [[ $1 == "" ]]; then
-	echo "no arg"
+	while [[ ${title} == "" ]]; do
+		read -p "Title: " title 
+	done
 else
 	title=$1
-	vim "${creationDate}-${title// /-}.markdown"
 fi	
 
+vim "${creationDate}-${title// /-}.markdown"
