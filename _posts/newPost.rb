@@ -5,7 +5,6 @@ require "time"
 title=ARGV[0].gsub(/\ /, "-")
 myTime=Time.new.iso8601.gsub(/T.*$/, "")
 
-puts "#{myTime}-#{title}.markdown"
+cmd="vim #{myTime}-#{title}.markdown"
+#exec(cmd)
 
-
-#exec()
