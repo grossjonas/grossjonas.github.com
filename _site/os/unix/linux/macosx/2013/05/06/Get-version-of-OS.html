@@ -36,7 +36,7 @@
           <li><a href="/">Home</a></li>
           <li><a href="/archives">Archive</a></li>
           <li><a href="/about">About</a></li>
-          <li><a href="http://twitter.com/redwall_hp">Twitter</a></li>
+          <li><a href="http://twitter.com/grossjonas">Twitter</a></li>
           <li><a href="/feed.xml">RSS Feed</a></li>
         </ul>
       </nav>
@@ -63,27 +63,23 @@ But where did you land?</p>
 
 <p>Let&#39;s have a quick check. Should also be no problem. That <a href="http://en.wikipedia.org/wiki/Posix">POSIX-Standard</a> from the 80ies will do. Just have a quick look and yep, there is some handy <a href="http://pubs.opengroup.org/onlinepubs/9699919799/">programm for that</a>. So:</p>
 
-<div class="highlight"><pre><code class="bash">uname -s
-</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">uname -s</code></pre></div>
 
 <p>Wow, that really doesn&#39;t help. So let&#39;s look at all information:</p>
 
-<div class="highlight"><pre><code class="bash">uname -a
-</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">uname -a</code></pre></div>
 
 <p>and get an output like:</p>
 
-<div class="highlight"><pre><code class="bash">Linux hXXXXXX.myserver.net 2.6.32-028stab091.2 <span class="c">#1 SMP Fri Jun 3 00:02:40 MSD 2011 i686 GNU/Linux</span>
-</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">Linux hXXXXXX.myserver.net 2.6.32-028stab091.2 <span class="c">#1 SMP Fri Jun 3 00:02:40 MSD 2011 i686 GNU/Linux</span></code></pre></div>
 
-<div class="highlight"><pre><code class="bash">Darwin myBook-2.local 10.8.0 Darwin Kernel Version 10.8.0: Tue Jun 7 16:33:36 PDT 2011; root:xnu-1504.15.3~1/RELEASE_I386 i386
-</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">Darwin myBook-2.local 10.8.0 Darwin Kernel Version 10.8.0: Tue Jun <span class="m">7</span> 16:33:36 PDT 2011<span class="p">;</span> root:xnu-1504.15.3~1/RELEASE_I386 i386</code></pre></div>
 
 <p><irony>Jeah - now I know that my time is set wrong ...</irony></p>
 
 <p>Wikipedia has a nice list of uname-output <a href="http://en.wikipedia.org/wiki/Uname">here</a>, but these cryptic numbers don&#39;t really help. On *nix-system you can often find usefully information with:</p>
 
-<div class="highlight"><pre><code class="bash">cat /etc/issue
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">cat /etc/issue
 <span class="c"># Just for example</span>
 <span class="c"># ================</span>
 <span class="c"># Debian GNU/Linux 6.0 \n \l</span>
@@ -91,22 +87,19 @@ But where did you land?</p>
 <span class="c"># CentOS release 6.4 (Final)</span>
 <span class="c"># Kernel \r on an \m</span>
 <span class="c">#</span>
-<span class="c"># Ubuntu 12.04.2 LTS \n \l</span>
-</code></pre></div>
+<span class="c"># Ubuntu 12.04.2 LTS \n \l</span></code></pre></div>
 
 <p>That one is easy to remember, but for Macs I always end up googling. So this snippet is for <em>drum roll</em> :</p>
 
-<div class="highlight"><pre><code class="bash">system_profiler SPSoftwareDataType
-</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">system_profiler SPSoftwareDataType</code></pre></div>
 
 <p>Jepp, almost as easy to remember as the previous line ... ;)</p>
 
 <p>There are a few other tipps and tweaks to get the OS-Version like:</p>
 
-<div class="highlight"><pre><code class="bash">lsb_release -a
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">lsb_release -a
 cat /proc/version
-cat /etc/issue.net
-</code></pre></div>
+cat /etc/issue.net</code></pre></div>
 
 <p>and others. So have fun exploring and bye bye.</p>
 </div>
@@ -123,7 +116,7 @@ cat /etc/issue.net
 
 
   <footer id="footer">
-    <p class="copyright">Copyright &copy; 2013 Your New Jekyll Site. Powered by <a href="http://jekyllrb.com">Jekyll</a>, theme by <a href="http://www.webmaster-source.com">Matt Harzewski</a></p>
+    <p class="copyright">Copyright &copy; 2014 Your New Jekyll Site. Powered by <a href="http://jekyllrb.com">Jekyll</a>, theme by <a href="http://www.webmaster-source.com">Matt Harzewski</a></p>
   </footer>
 
 

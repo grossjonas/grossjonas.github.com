@@ -36,7 +36,7 @@
           <li><a href="/">Home</a></li>
           <li><a href="/archives">Archive</a></li>
           <li><a href="/about">About</a></li>
-          <li><a href="http://twitter.com/redwall_hp">Twitter</a></li>
+          <li><a href="http://twitter.com/grossjonas">Twitter</a></li>
           <li><a href="/feed.xml">RSS Feed</a></li>
         </ul>
       </nav>
@@ -69,9 +69,8 @@
 
 <p>So fire up that Ubuntu 12.04.2 LTS and go.</p>
 
-<div class="highlight"><pre><code class="bash">apt-cache search nodejs
-apt-cache showpkg nodejs
-</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">apt-cache search nodejs
+apt-cache showpkg nodejs</code></pre></div>
 
 <p>STOP - this version is from the stone age or something. So let\&#39;s ask my <a href="http://www.giyf.com/">friend</a>.</p>
 
@@ -79,35 +78,31 @@ apt-cache showpkg nodejs
 
 <p>So there it goes:</p>
 
-<div class="highlight"><pre><code class="bash">sudo add-apt-repository ppa:chris-lea/node.js
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo add-apt-repository ppa:chris-lea/node.js
 sudo apt-get update
 sudo apt-get install nodejs
 nodejs -v // v0.10.0 - okay
 npm -v // 1.2.14 - kk, too
 apt-cache search mongodb
 apt-cache showpkg mongodb // 2.0.4 - damn that 0.4 releases behind right now ... *arg* never mind
-sudo apt-get install mongodb
-</code></pre></div>
+sudo apt-get install mongodb</code></pre></div>
 
 <p>Okay, that runs a mongodb right after installing ... hmm ... let&#39;s have a look:</p>
 
-<div class="highlight"><pre><code class="bash"><span class="nb">cd</span> /etc/init
-ls -al | grep mongo // mongodb.conf
-</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd</span> /etc/init
+ls -al <span class="p">|</span> grep mongo // mongodb.conf</code></pre></div>
 
 <p>So it&#39;s an <a href="http://upstart.ubuntu.com/">upstart job</a>. That&#39;s okay for a server, but this time I sit in front of my laptop and just want to fiddle about it a bit <em>before</em> deploying it to my server. So:</p>
 
-<div class="highlight"><pre><code class="bash">sudo vim /etc/init/mongodb.conf
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo vim /etc/init/mongodb.conf
 :%s/start<span class="se">\ </span>on/#start<span class="se">\ </span>on/gc
-:x
-</code></pre></div>
+:x</code></pre></div>
 
 <p>Now we should be ready.</p>
 
 <p>Almost - I forgot a slightly important part. I already had done:</p>
 
-<div class="highlight"><pre><code class="bash">sudo apt-get install texlive-full
-</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install texlive-full</code></pre></div>
 
 <p>(Attention: this download a few gigs of binaries and installs them after that - this could be a looong procedure.)</p>
 
@@ -115,31 +110,26 @@ ls -al | grep mongo // mongodb.conf
 
 <p>So now it\&#39;s time to check out:</p>
 
-<div class="highlight"><pre><code class="bash">git clone https://github.com/alabid/flylatex.git
-<span class="nb">cd </span>flylatex
-</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">git clone https://github.com/alabid/flylatex.git
+<span class="nb">cd </span>flylatex</code></pre></div>
 
 <p>Grep all dependencies:</p>
 
-<div class="highlight"><pre><code class="bash">npm install -d
-</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">npm install -d</code></pre></div>
 
 <p>Customize configuration:</p>
 
-<div class="highlight"><pre><code class="bash">vim configs.js
-</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">vim configs.js</code></pre></div>
 
 <p>... I just commented out <em>path: ...</em> (:%s/path:/\/\/path:/gc)</p>
 
 <p>And now <em>drum roll</em>:</p>
 
-<div class="highlight"><pre><code class="bash">nodejs app.js
-</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">nodejs app.js</code></pre></div>
 
 <p>Ah the output points us to:</p>
 
-<div class="highlight"><pre><code class="bash">lynx localhost:3000
-</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">lynx localhost:3000</code></pre></div>
 
 <p>Just kiddin&#39;. It seems to work with lynx but I recommend using a full blown graphical browser like luakit or uzbl and just have fun!</p>
 
@@ -147,14 +137,12 @@ ls -al | grep mongo // mongodb.conf
 
 <p>From now on you must remember to</p>
 
-<div class="highlight"><pre><code class="bash">sudo service mongodb start
-</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo service mongodb start</code></pre></div>
 
 <p>before </p>
 
-<div class="highlight"><pre><code class="bash"><span class="nb">cd</span> &lt;my flylatex dir&gt;
-nodejs app.js
-</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nb">cd</span> &lt;my flylatex dir&gt;
+nodejs app.js</code></pre></div>
 
 <h2>HF :D</h2>
 </div>
@@ -171,7 +159,7 @@ nodejs app.js
 
 
   <footer id="footer">
-    <p class="copyright">Copyright &copy; 2013 Your New Jekyll Site. Powered by <a href="http://jekyllrb.com">Jekyll</a>, theme by <a href="http://www.webmaster-source.com">Matt Harzewski</a></p>
+    <p class="copyright">Copyright &copy; 2014 Your New Jekyll Site. Powered by <a href="http://jekyllrb.com">Jekyll</a>, theme by <a href="http://www.webmaster-source.com">Matt Harzewski</a></p>
   </footer>
 
 

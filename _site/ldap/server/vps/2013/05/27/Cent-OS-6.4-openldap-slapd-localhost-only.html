@@ -36,7 +36,7 @@
           <li><a href="/">Home</a></li>
           <li><a href="/archives">Archive</a></li>
           <li><a href="/about">About</a></li>
-          <li><a href="http://twitter.com/redwall_hp">Twitter</a></li>
+          <li><a href="http://twitter.com/grossjonas">Twitter</a></li>
           <li><a href="/feed.xml">RSS Feed</a></li>
         </ul>
       </nav>
@@ -70,13 +70,11 @@
 
 <p>In Cent OS 6.4 these are configured in </p>
 
-<div class="highlight"><pre><code class="bash">vim /etc/sysconfig/ldap
-</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">vim /etc/sysconfig/ldap</code></pre></div>
 
 <p>With the help of the comments this file is pretty self-explanatory. So I changed every &#39;yes&#39; to &#39;no&#39; and added:</p>
 
-<div class="highlight"><pre><code class="ini"><span class="na">SLAPD_URLS</span><span class="o">=</span><span class="s">&quot;ldap://127.0.0.1 ldaps://127.0.0.1&quot;</span>
-</code></pre></div>
+<div class="highlight"><pre><code class="language-ini" data-lang="ini"><span class="na">SLAPD_URLS</span><span class="o">=</span><span class="s">&quot;ldap://127.0.0.1 ldaps://127.0.0.1&quot;</span></code></pre></div>
 
 <p>Thanks to TrevorH1 in #centos on irc.freenode.net </p>
 </div>
@@ -93,7 +91,7 @@
 
 
   <footer id="footer">
-    <p class="copyright">Copyright &copy; 2013 Your New Jekyll Site. Powered by <a href="http://jekyllrb.com">Jekyll</a>, theme by <a href="http://www.webmaster-source.com">Matt Harzewski</a></p>
+    <p class="copyright">Copyright &copy; 2014 Your New Jekyll Site. Powered by <a href="http://jekyllrb.com">Jekyll</a>, theme by <a href="http://www.webmaster-source.com">Matt Harzewski</a></p>
   </footer>
 
 

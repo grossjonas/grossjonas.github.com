@@ -36,7 +36,7 @@
           <li><a href="/">Home</a></li>
           <li><a href="/archives">Archive</a></li>
           <li><a href="/about">About</a></li>
-          <li><a href="http://twitter.com/redwall_hp">Twitter</a></li>
+          <li><a href="http://twitter.com/grossjonas">Twitter</a></li>
           <li><a href="/feed.xml">RSS Feed</a></li>
         </ul>
       </nav>
@@ -66,9 +66,8 @@
 <p>Just a quick remark: I recommend installing <em>mysql-workbench</em> also.
 So:</p>
 
-<div class="highlight"><pre><code class="bash">sudo apt-get install mysql-server mysql-client mysql-workbench
-sudo apt-get install apache2
-</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo apt-get install mysql-server mysql-client mysql-workbench
+sudo apt-get install apache2</code></pre></div>
 
 <h2>Deactivate autostart</h2>
 
@@ -79,25 +78,22 @@ sudo apt-get install apache2
 <p><em>apache</em> gets started via an <a href="http://en.wikipedia.org/wiki/Init">init-script</a> on Ubuntu 12.04.2 LTS ( <code>cat /etc/issue</code> ). These script can be managed by <em>update-rc.d</em>, so the manpage is a good start for more information. To fully understand that manpage you also need to know the diffrent run-levels and their purpose, which will lead you to the <a href="http://en.wikipedia.org/wiki/Runlevel">Linux Standard Base specification</a>. Finally it is obvious: Just disabling auto startup is the only reasonable way to go, since maybe autostart is need some day in future ...
 So:</p>
 
-<div class="highlight"><pre><code class="bash">sudo update-rc.d -f apache2 disable
-</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo update-rc.d -f apache2 disable</code></pre></div>
 
 <h3>mysql aka upstart</h3>
 
 <p><em>mysql</em> is invoked by <a href="http://en.wikipedia.org/wiki/Upstart">upstart</a>. This is Ubuntu&#39;s &#39;own&#39; startup mechanism. <a href="http://upstart.ubuntu.com/getting-started.html">This</a> is where you can get the basics.
 To make a long story short:</p>
 
-<div class="highlight"><pre><code class="bash">sudo vim /etc/init/mysql.conf
-:% s/start<span class="se">\ </span>on<span class="se">\ </span>runlevel/#start<span class="se">\ </span>on<span class="se">\ </span>runlevel/gc
-</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">sudo vim /etc/init/mysql.conf
+:% s/start<span class="se">\ </span>on<span class="se">\ </span>runlevel/#start<span class="se">\ </span>on<span class="se">\ </span>runlevel/gc</code></pre></div>
 
 <h3>Restart ...</h3>
 
 <p>... and see if it works</p>
 
-<div class="highlight"><pre><code class="bash">ps aux | grep mysql
-ps aux | grep apache
-</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">ps aux <span class="p">|</span> grep mysql
+ps aux <span class="p">|</span> grep apache</code></pre></div>
 </div>
 
 	<p class="meta">Posted on <span class="postdate">Mar 18, 2013</span></p>
@@ -112,7 +108,7 @@ ps aux | grep apache
 
 
   <footer id="footer">
-    <p class="copyright">Copyright &copy; 2013 Your New Jekyll Site. Powered by <a href="http://jekyllrb.com">Jekyll</a>, theme by <a href="http://www.webmaster-source.com">Matt Harzewski</a></p>
+    <p class="copyright">Copyright &copy; 2014 Your New Jekyll Site. Powered by <a href="http://jekyllrb.com">Jekyll</a>, theme by <a href="http://www.webmaster-source.com">Matt Harzewski</a></p>
   </footer>
 
 

@@ -36,7 +36,7 @@
           <li><a href="/">Home</a></li>
           <li><a href="/archives">Archive</a></li>
           <li><a href="/about">About</a></li>
-          <li><a href="http://twitter.com/redwall_hp">Twitter</a></li>
+          <li><a href="http://twitter.com/grossjonas">Twitter</a></li>
           <li><a href="/feed.xml">RSS Feed</a></li>
         </ul>
       </nav>
@@ -65,7 +65,7 @@
 
 <p>Like almost always <a href="http://www.giyf.com/">Google was my friend</a>. I found <a href="http://blog.mycila.com/2009/07/recursive-svn-update.html">Mathieu Carbou&#39;s script</a> and was able to put together this  one:</p>
 
-<div class="highlight"><pre><code class="bash"><span class="c">#!/bin/bash</span>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#!/bin/bash</span>
 
 <span class="nv">count</span><span class="o">=</span>0
 <span class="nv">curDir</span><span class="o">=</span><span class="sb">`</span><span class="nb">pwd</span><span class="sb">`</span>
@@ -79,42 +79,40 @@ update <span class="o">()</span>
     <span class="c">#echo &quot;Call to update ($1)&quot;</span>
     <span class="k">if</span> <span class="o">[</span> -d <span class="nv">$1</span>/.svn <span class="o">]</span>
     <span class="k">then</span>
-<span class="k">        </span><span class="nb">echo</span> <span class="s2">&quot;Updating $1...&quot;</span>
+        <span class="nb">echo</span> <span class="s2">&quot;Updating $1...&quot;</span>
         svn up <span class="nv">$1</span>
     <span class="k">else</span>
         <span class="c"># echo `ls`</span>
-        <span class="k">for </span>i in <span class="sb">`</span>ls <span class="nv">$1</span><span class="sb">`</span>
+        <span class="k">for</span> i in <span class="sb">`</span>ls <span class="nv">$1</span><span class="sb">`</span>
         <span class="k">do</span>
-<span class="k">            if</span> <span class="o">[</span> -d <span class="nv">$1</span>/<span class="nv">$i</span> <span class="o">]</span>
+            <span class="k">if</span> <span class="o">[</span> -d <span class="nv">$1</span>/<span class="nv">$i</span> <span class="o">]</span>
             <span class="k">then</span>
             <span class="c"># echo &quot;Descending to $i...&quot;</span>
                 update <span class="nv">$1</span>/<span class="nv">$i</span>
             <span class="k">fi</span>
-<span class="k">        done</span>
-<span class="k">    fi</span>
+        <span class="k">done</span>
+    <span class="k">fi</span>
 <span class="o">}</span>
  
-<span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="o">]</span>; <span class="k">then</span>
-<span class="k">    </span><span class="nb">echo</span> <span class="s2">&quot;Updating all SVN projects in ${curDir} ...&quot;</span>
+<span class="k">if</span> <span class="o">[</span> <span class="s2">&quot;$1&quot;</span> <span class="o">==</span> <span class="s2">&quot;&quot;</span> <span class="o">]</span><span class="p">;</span> <span class="k">then</span>
+    <span class="nb">echo</span> <span class="s2">&quot;Updating all SVN projects in ${curDir} ...&quot;</span>
 <span class="k">else</span>
-<span class="k">    </span><span class="nb">echo</span> <span class="s2">&quot;Updating all SVN projects in $1...&quot;</span>
+    <span class="nb">echo</span> <span class="s2">&quot;Updating all SVN projects in $1...&quot;</span>
     <span class="nv">path</span><span class="o">=</span><span class="nv">$1</span>
 <span class="k">fi</span>
 
 update <span class="k">${</span><span class="nv">path</span><span class="k">}</span>
 
-<span class="k">for </span>i in <span class="sb">`</span>find <span class="k">${</span><span class="nv">path</span><span class="k">}</span> -iname <span class="s2">&quot;.git&quot;</span><span class="sb">`</span>
+<span class="k">for</span> i in <span class="sb">`</span>find <span class="k">${</span><span class="nv">path</span><span class="k">}</span> -iname <span class="s2">&quot;.git&quot;</span><span class="sb">`</span>
 <span class="k">do</span>
-<span class="k">    </span><span class="nb">cd</span> <span class="sb">`</span>dirname <span class="k">${</span><span class="nv">i</span><span class="k">}</span><span class="sb">`</span>
+    <span class="nb">cd</span> <span class="sb">`</span>dirname <span class="k">${</span><span class="nv">i</span><span class="k">}</span><span class="sb">`</span>
     git pull
     <span class="nb">cd</span> <span class="k">${</span><span class="nv">curDir</span><span class="k">}</span>
-<span class="k">done</span>
-</code></pre></div>
+<span class="k">done</span></code></pre></div>
 
 <p>Just </p>
 
-<div class="highlight"><pre><code class="bash">chmod +x &lt;script&gt;
-</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash">chmod +x &lt;script&gt;</code></pre></div>
 
 <p>this and live happily ever after :)</p>
 </div>
@@ -131,7 +129,7 @@ update <span class="k">${</span><span class="nv">path</span><span class="k">}</s
 
 
   <footer id="footer">
-    <p class="copyright">Copyright &copy; 2013 Your New Jekyll Site. Powered by <a href="http://jekyllrb.com">Jekyll</a>, theme by <a href="http://www.webmaster-source.com">Matt Harzewski</a></p>
+    <p class="copyright">Copyright &copy; 2014 Your New Jekyll Site. Powered by <a href="http://jekyllrb.com">Jekyll</a>, theme by <a href="http://www.webmaster-source.com">Matt Harzewski</a></p>
   </footer>
 
 

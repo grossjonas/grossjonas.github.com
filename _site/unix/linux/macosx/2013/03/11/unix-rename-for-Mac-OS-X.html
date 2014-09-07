@@ -36,7 +36,7 @@
           <li><a href="/">Home</a></li>
           <li><a href="/archives">Archive</a></li>
           <li><a href="/about">About</a></li>
-          <li><a href="http://twitter.com/redwall_hp">Twitter</a></li>
+          <li><a href="http://twitter.com/grossjonas">Twitter</a></li>
           <li><a href="/feed.xml">RSS Feed</a></li>
         </ul>
       </nav>
@@ -55,34 +55,29 @@
 
 <p>I’m talking about the ‘rename’-command which works like that:</p>
 
-<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>rename &lt;RegEx&gt; &lt;file or list of files&gt;
-</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>rename &lt;RegEx&gt; &lt;file or list of files&gt;</code></pre></div>
 
 <p>But building your own rename-command on Mac is quite easy and you can do it with tools that are already on your system. So just write this little bash-script:</p>
 
-<div class="highlight"><pre><code class="bash"><span class="c">#!/bin/bash</span>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="c">#!/bin/bash</span>
 
 <span class="nv">REGEX</span><span class="o">=</span><span class="nv">$1</span>
 
 <span class="nb">shift</span>
 
-<span class="k">for </span>i in <span class="nv">$@</span>; mv <span class="nv">$i</span> <span class="sb">`</span><span class="nb">echo</span> “<span class="nv">$i</span>” | sed <span class="nv">$REGEX</span><span class="sb">`</span>;<span class="k">done</span>
-</code></pre></div>
+<span class="k">for</span> i in <span class="nv">$@</span><span class="p">;</span> mv <span class="nv">$i</span> <span class="sb">`</span><span class="nb">echo</span> “<span class="nv">$i</span>” <span class="p">|</span> sed <span class="nv">$REGEX</span><span class="sb">`</span><span class="p">;</span><span class="k">done</span></code></pre></div>
 
 <p>Name it “rename” and make it executable.</p>
 
-<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>chmod +x rename
-</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>chmod +x rename</code></pre></div>
 
 <p>And finally move it to the right spot.</p>
 
-<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>mv rename /bin/
-</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>mv rename /bin/</code></pre></div>
 
 <p>Et voila. My favorite command works again.</p>
 
-<div class="highlight"><pre><code class="bash"><span class="nv">$ </span>rename ‘s/<span class="se">\ </span>/<span class="se">\_</span>/g’ This<span class="se">\ </span>lousy<span class="se">\ </span>filename<span class="se">\ </span>contains<span class="se">\ </span>too<span class="se">\ </span>many<span class="se">\ </span>spaces.txt
-</code></pre></div>
+<div class="highlight"><pre><code class="language-bash" data-lang="bash"><span class="nv">$ </span>rename ‘s/<span class="se">\ </span>/<span class="se">\_</span>/g’ This<span class="se">\ </span>lousy<span class="se">\ </span>filename<span class="se">\ </span>contains<span class="se">\ </span>too<span class="se">\ </span>many<span class="se">\ </span>spaces.txt</code></pre></div>
 </div>
 
 	<p class="meta">Posted on <span class="postdate">Mar 11, 2013</span></p>
@@ -97,7 +92,7 @@
 
 
   <footer id="footer">
-    <p class="copyright">Copyright &copy; 2013 Your New Jekyll Site. Powered by <a href="http://jekyllrb.com">Jekyll</a>, theme by <a href="http://www.webmaster-source.com">Matt Harzewski</a></p>
+    <p class="copyright">Copyright &copy; 2014 Your New Jekyll Site. Powered by <a href="http://jekyllrb.com">Jekyll</a>, theme by <a href="http://www.webmaster-source.com">Matt Harzewski</a></p>
   </footer>
 
 
