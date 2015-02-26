@@ -1,10 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
 	<channel>
-		<title>Your New Jekyll Site</title>
+		<title>coding & stuff</title>
 		<description></description>
 		<link></link>
 		<atom:link href="/feed.xml" rel="self" type="application/rss+xml" />
+		
+			<item>
+				<title>Unity appindicator - can't decide on a title</title>
+				<description>&lt;p&gt;The &lt;a href=&quot;https://wiki.ubuntu.com/DesktopExperienceTeam/ApplicationIndicators&quot;&gt;link&lt;/a&gt;&lt;/p&gt;
+
+&lt;p&gt;The missing parts:&lt;/p&gt;
+</description>
+				<pubDate>Sat, 04 Oct 2014 00:00:00 +0200</pubDate>
+				<link>/ubuntu/appindicator/2014/10/04/Unity-AppIndicator---can't-decide-on-a-title.html</link>
+				<guid isPermaLink="true">/ubuntu/appindicator/2014/10/04/Unity-AppIndicator---can't-decide-on-a-title.html</guid>
+			</item>
 		
 			<item>
 				<title>libevhtp and ubuntu 14.04</title>
