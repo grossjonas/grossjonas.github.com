@@ -1,5 +1,5 @@
 name: coding & stuff
-markdown: redcarpet
+markdown: kramdown
 highlighter: pygments
 safe: true
 lsi: false
