@@ -1,5 +1,5 @@
 name: coding & stuff
 markdown: kramdown
-highlighter: pygments
+highlighter: rouge
 safe: true
 lsi: false
