@@ -19,9 +19,9 @@ Basic information on its listener can be found  in the [openldap documentation](
 
 Basically the server has 3 interfaces:
 
-* the normal ldap interface (URL: ldap:/...)
-* ldap over SSL (URL: ldaps:/...)
-* IPC(Unix domain socket) (URL: ldapi:/...)
+1. the normal ldap interface (URL: ldap:/...)
+2. ldap over SSL (URL: ldaps:/...)
+3. IPC(Unix domain socket) (URL: ldapi:/...)
 
 In Cent OS 6.4 these are configured in 
 
