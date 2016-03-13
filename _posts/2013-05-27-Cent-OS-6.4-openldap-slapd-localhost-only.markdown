@@ -22,6 +22,7 @@ Basically the server has 3 interfaces:
 3. IPC(Unix domain socket) (URL: ldapi:/...)
 
 In Cent OS 6.4 these are configured in 
+
 ``` bash
 vim /etc/sysconfig/ldap
 ```
