@@ -1,4 +1,7 @@
 name: coding & stuff
+url: http://grossjonas.github.io
+description: ... just some place to store coding notes and stuff
+
 markdown: kramdown
 highlighter: rouge
 safe: true
