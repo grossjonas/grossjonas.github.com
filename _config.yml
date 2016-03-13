@@ -4,6 +4,9 @@ highlighter: rouge
 safe: true
 lsi: false
 paginate: 5
+
+exclude: ['README.md', 'Gemfile.lock', 'Gemfile', 'Rakefile']
+
 gems:
     - jekyll-feed
     - jekyll-paginate
