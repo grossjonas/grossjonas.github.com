@@ -125,10 +125,6 @@ PLATFORMS
 
 DEPENDENCIES
   github-pages
-  jekyll-feed
-  jekyll-paginate
-  kramdown
-  rouge
 
 BUNDLED WITH
    1.11.2
