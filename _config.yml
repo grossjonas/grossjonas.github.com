@@ -1,6 +1,6 @@
 name: coding & stuff
 url: http://grossjonas.github.io
-description: ... just some place to store coding notes and stuff
+description: ... just some place to store notes on coding, devops, admin and other stuff
 
 markdown: kramdown
 highlighter: rouge
