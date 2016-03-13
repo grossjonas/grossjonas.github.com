@@ -10,6 +10,10 @@ paginate: 5
 
 exclude: ['README.md', 'Gemfile.lock', 'Gemfile', 'Rakefile']
 
+kramdown:
+  input: GFM
+  syntax_highlighter: rouge
+
 gems:
     - jekyll-feed
     - jekyll-paginate
