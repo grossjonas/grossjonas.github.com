@@ -17,30 +17,30 @@ But where did you land?
 
 Let's have a quick check. Should also be no problem. That [POSIX-Standard](http://en.wikipedia.org/wiki/Posix) from the 80ies will do. Just have a quick look and yep, there is some handy [programm for that](http://pubs.opengroup.org/onlinepubs/9699919799/). So:
 
-{% highlight bash %}
+``` bash
 uname -s
-{% endhighlight %}
+```
 
 Wow, that really doesn't help. So let's look at all information:
 
-{% highlight bash %}
+``` bash
 uname -a
-{% endhighlight %}
+```
 
 and get an output like:
 
-{% highlight bash %}
+``` bash
 Linux hXXXXXX.myserver.net 2.6.32-028stab091.2 #1 SMP Fri Jun 3 00:02:40 MSD 2011 i686 GNU/Linux
-{% endhighlight %}
-{% highlight bash %}
+```
+``` bash
 Darwin myBook-2.local 10.8.0 Darwin Kernel Version 10.8.0: Tue Jun 7 16:33:36 PDT 2011; root:xnu-1504.15.3~1/RELEASE_I386 i386
-{% endhighlight %}
+```
 
 <irony>Jeah - now I know that my time is set wrong ...</irony>
 
 Wikipedia has a nice list of uname-output [here](http://en.wikipedia.org/wiki/Uname), but these cryptic numbers don't really help. On \*nix-system you can often find usefully information with:
 
-{% highlight bash %}
+``` bash
 cat /etc/issue
 # Just for example
 # ================
@@ -50,22 +50,22 @@ cat /etc/issue
 # Kernel \r on an \m
 #
 # Ubuntu 12.04.2 LTS \n \l
-{% endhighlight %}
+```
 
 That one is easy to remember, but for Macs I always end up googling. So this snippet is for *drum roll* :
 
-{% highlight bash %}
+``` bash
 system_profiler SPSoftwareDataType
-{% endhighlight %}
+```
 
 Jepp, almost as easy to remember as the previous line ... ;)
 
 There are a few other tipps and tweaks to get the OS-Version like:
 
-{% highlight bash %}
+``` bash
 lsb_release -a
 cat /proc/version
 cat /etc/issue.net
-{% endhighlight %}
+```
 
 and others. So have fun exploring and bye bye.

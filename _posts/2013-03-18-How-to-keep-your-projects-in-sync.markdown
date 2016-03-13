@@ -18,7 +18,7 @@ Putting together a script to update all git repos was easy, but when I tried to 
 
 Like almost always [Google was my friend](http://www.giyf.com/). I found [Mathieu Carbou's script](http://blog.mycila.com/2009/07/recursive-svn-update.html) and was able to put together this  one:
 
-{% highlight bash %}
+``` bash
 #!/bin/bash
 
 count=0
@@ -63,13 +63,13 @@ do
 	git pull
 	cd ${curDir}
 done
-{% endhighlight %}
+```
 
-Just 
+Just
 
-{% highlight bash %}
+``` bash
 chmod +x <script>
-{% endhighlight %}
+```
 
 this and live happily ever after :)
 

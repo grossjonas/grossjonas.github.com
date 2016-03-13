@@ -22,15 +22,15 @@ Basically the server has 3 interfaces:
 3. IPC(Unix domain socket) (URL: ldapi:/...)
 
 In Cent OS 6.4 these are configured in 
-{% highlight bash %}
+``` bash
 vim /etc/sysconfig/ldap
-{% endhighlight %}
+```
 
 With the help of the comments this file is pretty self-explanatory. So I changed every 'yes' to 'no' and added:
 
-{% highlight ini %}
+``` ini
 SLAPD_URLS="ldap://127.0.0.1 ldaps://127.0.0.1"
-{% endhighlight %}
+```
 
 Thanks to TrevorH1 in #centos on irc.freenode.net 
 
