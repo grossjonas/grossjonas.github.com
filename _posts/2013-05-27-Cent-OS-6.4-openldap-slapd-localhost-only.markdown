@@ -10,16 +10,18 @@ But first things first. I am configuring a Cent OS 6.4 VPS to host a few service
 
 In the process of setting up that daemon I followed [this great walkthrough by 6tech](http://www.6tech.org/2013/01/ldap-server-and-centos-6-3/).
 
-In order to restrict ldap to localhost some further infomation is needed. 
-* How does the openldap-server choose its interface (and set its ports)?
-* Where do you configure that?
+In order to restrict ldap to localhost some further infomation is needed.
+
+- How does the openldap-server choose its interface (and set its ports)?
+- Where do you configure that?
 
 Basic information on its listener can be found  in the [openldap documentation](http://www.openldap.org/doc/admin24/runningslapd.html). The interesting part is the one about the '-h' option.
 
 Basically the server has 3 interfaces:
-1. the normal ldap interface (URL: ldap:/...)
-2. ldap over SSL (URL: ldaps:/...)
-3. IPC(Unix domain socket) (URL: ldapi:/...)
+
+* the normal ldap interface (URL: ldap:/...)
+* ldap over SSL (URL: ldaps:/...)
+* IPC(Unix domain socket) (URL: ldapi:/...)
 
 In Cent OS 6.4 these are configured in 
 
