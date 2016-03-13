@@ -3,5 +3,7 @@ markdown: kramdown
 highlighter: rouge
 safe: true
 lsi: false
+paginate: 5
 gems:
     - jekyll-feed
+    - jekyll-paginate
