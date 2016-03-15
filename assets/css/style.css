@@ -132,6 +132,12 @@ h3 {
 #header .right{
   flex: 1;
 }
+#header img{
+  border-style: solid;
+  border-width: 2px;
+  border-radius: 55px;
+  border-color: #cb4b16;
+}
 
 #footer {
 	width: 500px;
