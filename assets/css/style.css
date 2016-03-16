@@ -216,8 +216,6 @@ img.center {
 	margin: 0 auto 1em auto;
 }
 
-
-
 /*** Pagination ***/
 .postnavigation {
 	padding-top: 10px;
@@ -232,8 +230,6 @@ img.center {
 .postnavigation .right {
 	float: right;
 }
-
-
 
 /*** Media Queries ***/
 @media all and (max-width: 870px) {
@@ -256,40 +252,4 @@ img.center {
 		display: block;
 		margin-bottom: 15px;
 	}
-
-}
-
-
-
-/*** Icons ***/
-@font-face {
-  font-family: 'solarthemeicons';
-  src: url('../fonts/solarthemeicons.eot');
-  src: url('../fonts/solarthemeicons.eot#iefix') format('embedded-opentype'),
-       url('../fonts/solarthemeicons.woff') format('woff'),
-       url('../fonts/solarthemeicons.ttf') format('truetype'),
-       url('../fonts/solarthemeicons.svg#solarthemeicons') format('svg');
-  font-weight: normal;
-  font-style: normal;
-}
-
-[class^="icon-"]:before, [class*=" icon-"]:before {
-  font-family: "solarthemeicons";
-  font-style: normal;
-  font-weight: normal;
-  speak: none;
-  display: inline-block;
-  text-decoration: inherit;
-  width: 1em;
-  margin-right: .2em;
-  text-align: center;
-  font-variant: normal;
-  text-transform: none;
-  line-height: 1.7;
-}
- 
-.icon-sun:before { content: '\e801'; }
-.icon-anchor:before { content: '\e800'; }
-.icon-anchor {
-	font-size: 65%;
 }
