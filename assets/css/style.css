@@ -28,8 +28,6 @@ table {
 	border-spacing: 0;
 }
 
-
-
 /*** Basics ***/
 body {
 	font-family: Verdana, serif;
@@ -75,7 +73,6 @@ acronym, abbr {
 	border-bottom: 1px dashed;
 }
 
-
 h1 {
 	font-size: 17px;
 	margin: 0 0 10px 0;
@@ -88,8 +85,6 @@ h3 {
 	font-size: 14px;
 	margin: 0 0 10px 0;
 }
-
-
 
 /*** Useful Classes ***/
 .clear { clear: both; }
@@ -104,8 +99,6 @@ h3 {
 .img-middle { vertical-align: middle; }
 .nopadding { padding: 0; }
 .nounderline { text-decoration: underline; }
-
-
 
 /*** Structure ***/
 #page {
@@ -171,8 +164,6 @@ h3 {
 	font-size: 1.2em;
 	padding: 2px 4px;
 }
-
-
 
 /*** Posts ***/
 article {
