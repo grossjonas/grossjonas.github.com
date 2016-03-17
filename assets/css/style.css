@@ -101,12 +101,6 @@ h3 {
 .nounderline { text-decoration: underline; }
 
 /*** Structure ***/
-#page {
-	width: 500px;
-	margin: 0 auto;
-	position: relative;
-}
-
 #header {
 	width: 500px;
 	margin: 40px auto 50px auto;
@@ -132,12 +126,25 @@ h3 {
   border-color: #cb4b16;
 }
 
-#footer {
+#navbar {
+	text-align: right;
 	width: 500px;
-	margin: 50px auto 20px auto;
-	padding-top: 10px;
-	font-size: 0.85em;
-	border-top: 1px solid #073642;
+	margin: 40px auto 50px auto;
+}
+#navbar ul{
+	padding: 0px;
+	display: flex;
+	justify-content: space-between;
+}
+#navbar li {
+	list-style: none;
+	margin: 0;
+}
+#navbar a {
+	border: none;
+	font-family: "Helvetica Neue", "Helvetica", serif;
+	font-size: 1.2em;
+	padding: 2px 4px;
 }
 
 #content {
@@ -145,24 +152,12 @@ h3 {
 	margin: 0 auto;
 }
 
-#sidebar {
-	position: absolute;
-	text-align: right;
-	width: 160px;
-	top: 0;
-	left: -240px;
-}
-
-#sidebar li {
-	list-style: none;
-	margin: 2px 0;
-}
-
-#sidebar a {
-	border: none;
-	font-family: "Helvetica Neue", "Helvetica", serif;
-	font-size: 1.2em;
-	padding: 2px 4px;
+#footer {
+	width: 500px;
+	margin: 50px auto 20px auto;
+	padding-top: 10px;
+	font-size: 0.85em;
+	border-top: 1px solid #073642;
 }
 
 /*** Posts ***/
@@ -231,7 +226,7 @@ img.center {
 		padding-right: 10px;
 	}
 
-	#sidebar {
+	#navbar {
 		position: relative;
 		text-align: left;
 		width: 100%;
@@ -239,7 +234,7 @@ img.center {
 		margin: 10px 10px 20px 10px;
 	}
 
-	#sidebar nav select.mnav {
+	#navbar nav select.mnav {
 		display: block;
 		margin-bottom: 15px;
 	}
