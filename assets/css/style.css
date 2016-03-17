@@ -101,8 +101,12 @@ h3 {
 .nounderline { text-decoration: underline; }
 
 /*** Structure ***/
+#page {
+	width: 700px;
+	margin: 0px auto;
+}
+
 #header {
-	width: 500px;
 	margin: 40px auto 50px auto;
   display: flex;
 }
@@ -127,8 +131,7 @@ h3 {
 }
 
 #navbar {
-	text-align: right;
-	width: 500px;
+	text-align: center;
 	margin: 40px auto 50px auto;
 }
 #navbar ul{
@@ -148,12 +151,10 @@ h3 {
 }
 
 #content {
-	width: 500px;
 	margin: 0 auto;
 }
 
 #footer {
-	width: 500px;
 	margin: 50px auto 20px auto;
 	padding-top: 10px;
 	font-size: 0.85em;
@@ -227,10 +228,6 @@ img.center {
 	}
 
 	#navbar {
-		position: relative;
-		text-align: left;
-		width: 100%;
-		left: 0;
 		margin: 10px 10px 20px 10px;
 	}
 

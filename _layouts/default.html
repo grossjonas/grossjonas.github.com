@@ -9,34 +9,38 @@
 </head>
 
 <body>
-  <header id="header">
-    <div class="left">
-      <img alt="gravatar" src="https://secure.gravatar.com/avatar/f77d91f8e6da14e2a4294bc35714ea6f?s=110&d=identicon" />
+  <div id="page">
+
+    <header id="header">
+      <div class="left">
+        <img alt="gravatar" src="https://secure.gravatar.com/avatar/f77d91f8e6da14e2a4294bc35714ea6f?s=110&d=identicon" />
+      </div>
+      <div id="right">
+        <h1><a href="/">{{ site.name }}</a></h1>
+        <p>{{ site.description }}</p>
+      </div>
+    </header>
+
+    <div id="navbar">
+      <nav>
+        <ul>
+          <li><a href="/">Home</a></li>
+          <li><a href="/archives">Archive</a></li>
+          <li><a href="/about">About</a></li>
+          <li><a href="/feed.xml">Feed</a></li>
+        </ul>
+      </nav>
     </div>
-    <div id="right">
-      <h1><a href="/">{{ site.name }}</a></h1>
-      <p>{{ site.description }}</p>
+
+    <div id="content">
+      {{ content }}
     </div>
-  </header>
 
-  <div id="navbar">
-    <nav>
-      <ul>
-        <li><a href="/">Home</a></li>
-        <li><a href="/archives">Archive</a></li>
-        <li><a href="/about">About</a></li>
-        <li><a href="/feed.xml">Feed</a></li>
-      </ul>
-    </nav>
+    <footer id="footer">
+      <p class="copyright">Copyright &copy; {{ site.time | date: '%Y' }} {{ site.name }}. Powered by <a href="http://jekyllrb.com">Jekyll</a>, theme by <a href="http://www.webmaster-source.com">Matt Harzewski</a></p>
+    </footer>
+
   </div>
-
-  <div id="content">
-    {{ content }}
-  </div>
-
-  <footer id="footer">
-    <p class="copyright">Copyright &copy; {{ site.time | date: '%Y' }} {{ site.name }}. Powered by <a href="http://jekyllrb.com">Jekyll</a>, theme by <a href="http://www.webmaster-source.com">Matt Harzewski</a></p>
-  </footer>
 
 </body>
 </html>
