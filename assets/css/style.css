@@ -104,11 +104,13 @@ h3 {
 #page {
 	width: 700px;
 	margin: 0px auto;
+	min-width: 250px;
 }
 
 #header {
 	margin: 40px auto 50px auto;
   display: flex;
+	flex-wrap: wrap;
 }
 #header h1 {
 	font-size: 32px;
@@ -122,12 +124,14 @@ h3 {
 }
 #header .right{
   flex: 1;
+	min-width: 245px;
 }
 #header img{
   border-style: solid;
   border-width: 2px;
   border-radius: 55px;
   border-color: #cb4b16;
+	margin: 0 5px 0 0;
 }
 
 #navbar {
@@ -219,7 +223,7 @@ img.center {
 }
 
 /*** Media Queries ***/
-@media all and (max-width: 870px) {
+@media all and (max-width: 740px) {
 
 	#page, #header, #content, #footer {
 		width: inherit;
@@ -234,5 +238,29 @@ img.center {
 	#navbar nav select.mnav {
 		display: block;
 		margin-bottom: 15px;
+	}
+}
+
+@media all and (max-width: 420px) {
+
+	#header {
+		display: block;
+	}
+
+	#header.left {
+		position: relative;
+		flex: none;
+	}
+
+	#header img {
+		display: block;
+		float: none;
+		position: relative;
+		width: 110px;
+		margin: 0 auto;
+	}
+
+	#header h1 {
+		text-align: center;
 	}
 }
