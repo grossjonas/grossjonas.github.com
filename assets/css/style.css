@@ -135,8 +135,11 @@ h3 {
 }
 
 #navbar {
+	background-color: inherit;
+	top: 1px;
+	width: 700px;
 	text-align: center;
-	margin: 40px auto 50px auto;
+	margin: 0px auto;
 }
 #navbar ul{
 	padding: 0px;
@@ -155,7 +158,7 @@ h3 {
 }
 
 #content {
-	margin: 0 auto;
+	margin: 50px auto 0px auto;
 }
 
 #footer {
@@ -225,19 +228,24 @@ img.center {
 /*** Media Queries ***/
 @media all and (max-width: 740px) {
 
-	#page, #header, #content, #footer {
+	#page, #header, #navbar, #content, #footer {
 		width: inherit;
 		padding-left: 10px;
 		padding-right: 10px;
 	}
 
-	#navbar {
-		margin: 10px 10px 20px 10px;
+	#header {
+		margin-top: 10px;
+		margin-bottom: 10px;
 	}
 
 	#navbar nav select.mnav {
 		display: block;
 		margin-bottom: 15px;
+	}
+
+	#content {
+		margin-top: 10px;
 	}
 }
 
