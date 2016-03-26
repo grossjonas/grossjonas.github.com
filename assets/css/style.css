@@ -134,23 +134,23 @@ h3 {
 	margin: 0 5px 0 0;
 }
 
-#navbar {
+.navbar {
 	background-color: inherit;
 	top: 1px;
 	width: 700px;
 	text-align: center;
 	margin: 0px auto;
 }
-#navbar ul{
+.navbar ul{
 	padding: 0px;
 	display: flex;
 	justify-content: space-between;
 }
-#navbar li {
+.navbar li {
 	list-style: none;
 	margin: 0;
 }
-#navbar a {
+.navbar a {
 	border: none;
 	font-family: "Helvetica Neue", "Helvetica", serif;
 	font-size: 1.2em;
@@ -228,7 +228,7 @@ img.center {
 /*** Media Queries ***/
 @media all and (max-width: 740px) {
 
-	#page, #header, #navbar, #content, #footer {
+	#page, #header, .navbar, #content, #footer {
 		width: inherit;
 		padding-left: 10px;
 		padding-right: 10px;
@@ -239,7 +239,7 @@ img.center {
 		margin-bottom: 10px;
 	}
 
-	#navbar nav select.mnav {
+	.navbar nav select.mnav {
 		display: block;
 		margin-bottom: 15px;
 	}
