@@ -12,7 +12,7 @@ document.addEventListener("DOMContentLoaded", function() {
 
   clone.classList.add("clone");
 
-  //clone.style.display = "none";
+  clone.style.display = "none";
   clone.style.position = "fixed";
   clone.style.width = "100%";
   clone.style.top = "0px";
