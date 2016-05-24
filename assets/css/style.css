@@ -102,7 +102,7 @@ h3 {
 
 /*** Structure ***/
 #page {
-	width: 700px;
+	width: 90%;
 	margin: 0px auto;
 	min-width: 250px;
 }
@@ -137,7 +137,7 @@ h3 {
 .navbar {
 	background-color: inherit;
 	top: 1px;
-	width: 700px;
+	width: 90%;
 	text-align: center;
 	margin: 0px auto;
 }
