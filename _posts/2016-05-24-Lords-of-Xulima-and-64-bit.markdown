@@ -21,7 +21,7 @@ cd /tmp/bass24-linux
 wget "http://www.un4seen.com/files/bass24-linux.zip"
 unzip bass24-linux.zip
 
-cp x64/libbass.so ${xulima_installation_dir}/game/libbass.so
+cp x64/libbass.so ${xulima_installation_dir}/game/
 ```
 
 then
