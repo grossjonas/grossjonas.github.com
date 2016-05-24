@@ -1,6 +1,6 @@
 var globals = {};
 globals.height = -1;
-
+/*
 document.addEventListener("DOMContentLoaded", function() {
   var navbar = document.getElementsByClassName("navbar")[0];
   var clone = navbar.cloneNode(true);
@@ -50,3 +50,4 @@ function stickIt(){
     clone.style.display = "none";
   }
 }
+*/
