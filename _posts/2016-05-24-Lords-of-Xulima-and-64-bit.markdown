@@ -44,6 +44,9 @@ cd game
 mono LoX.exe
 
 EOF
+
+chmod +x start.sh
+
 ```
 
 now it should be runnable via the `.desktop` file again
