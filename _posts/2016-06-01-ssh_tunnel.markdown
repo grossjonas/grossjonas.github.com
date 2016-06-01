@@ -4,7 +4,7 @@ title: "SSH tunnel"
 categories: ssh
 ---
 
-I need to look it up every time and that's all I want to know:
+I constanty mess the order of ports up and need to look it up almost every time. But all I want to know is:
 ``` bash
 ssh -L <local port>:<remote ip or dns>:<remote port> -l <user> -p <port> <host>
 ```
