@@ -28,3 +28,7 @@ sysctl -p
 to reload settings.
 
 To re-enable ipv6 just comment it out (or set it to `0` maybe).
+
+# Update
+
+[Let's encrypt](https://letsencrypt.org/) added IPv6 support, see [their blog post](https://letsencrypt.org/2016/07/26/full-ipv6-support.html)
