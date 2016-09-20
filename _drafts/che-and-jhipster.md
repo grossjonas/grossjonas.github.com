@@ -120,3 +120,9 @@ Quick recap:
 * privileged(aka sudoer) user called  ```user``` with ```${HOME}``` being ```/home/user``` and password ```user```, which is the "docker ```USER```"; so ```USER user``` is required
 * directory ```/projects``` as ```WORKDIR```
 * a functioning SSH-Server as ```CMD```, so last line must be ```CMD sudo /usr/sbin/sshd -D && tail -f /dev/null```
+
+TODO:
+* clean up dockerfile; maybe make it a gist; maybe base it on opensuse or alpine
+* create CMD for ```yo jhipster```
+* fix CMD for Maven wrapper ```./mvnw``` (or ```spring-boot:run``` + packaging aka ```mvn clean install```)
+* maybe ```curl``` whole workspace (with commands)
