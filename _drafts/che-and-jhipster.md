@@ -74,7 +74,7 @@ Now I can run yeoman, but JHipster's Maven wrapper(```mvnw```) fails because of 
 
 Let's fix this:
 ``` dockerfile
-Run \
+RUN \
   echo "" >> /home/user/.bashrc ; \
   echo "export JAVA_HOME=/etc/alternatives/java_sdk" >> /home/user/.bashrc ;  
 ```
@@ -161,6 +161,50 @@ RUN \
 RUN echo "%user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers    
 ```
 
+So now we got a first running version. Compiled together it's:
+
+``` dockerfile
+FROM opensuse:42.1
+
+RUN zypper install --no-confirm \
+  java-1_8_0-openjdk-devel \
+  git \
+  npm
+
+RUN npm install --global npm
+RUN npm install --global bower yo gulp-cli generator-jhipster
+
+RUN \
+  groupadd user && \
+  useradd user -s /bin/bash -m -g user && \
+  chown -R user:user /home/user
+
+Run \
+  echo "" >> /home/user/.bashrc && \
+  echo "export JAVA_HOME=/etc/alternatives/java_sdk" >> /home/user/.bashrc ;
+
+RUN \
+  mkdir /projects && \
+  chown user:user /projects
+
+RUN \
+  zypper install --no-confirm \
+    unzip \
+    sudo
+
+RUN \
+  echo "%user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
+  echo "Defaults        lecture = never" >> /etc/sudoers.d/privacy
+
+USER user
+
+WORKDIR /projects
+
+CMD tail -f /dev/null
+```
+
+<hr />
+
 ``` dockerfile
 RUN echo "%sudo ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
 
@@ -178,9 +222,6 @@ WORKDIR /projects
 CMD sudo /usr/sbin/sshd -D && \
     tail -f /dev/null
 ```
-
-So now we got a first running version.
-
 
 
 Edit Commands -> Custom ->
