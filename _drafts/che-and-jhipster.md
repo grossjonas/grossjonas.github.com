@@ -249,3 +249,7 @@ TODO:
 
 Additional notes:
 * [JHipster in Docker Hub](https://hub.docker.com/r/jhipster/jhipster/)
+
+```
+yo jhipster && gulp install
+``` 
