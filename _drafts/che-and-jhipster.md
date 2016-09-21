@@ -3,16 +3,12 @@ layout: post
 title: CHE and JHipster
 ---
 
-[JHipster](https://jhipster.github.io/)
+CHE is using Docker to privide defined environments for workspace.
+You can provide your own Dockerfile by putting it's contents in
 
-[Installation instructions from the site](https://jhipster.github.io/#quick)
+Workspaces -> Add Workspace -> Custom stack -> Write your own stack
 
-```Assuming you have already installed Java, Git, Node.js, Bower, Yeoman and Gulp```
-
-# How does this translate to installing
-
-[JHipster in Docker Hub](https://hub.docker.com/r/jhipster/jhipster/)
-
+[JHipster](https://jhipster.github.io/) provides a docker container. You can try it by running
 ``` bash
 docker run -it \
   -p 8080:8080 \
@@ -23,89 +19,169 @@ docker run -it \
   bash
 ```
 
-Workspaces -> Add Workspace
+but this is not suitable for CHE because ```sudo``` is not installed.
+
+So let's build an own Dockerfile.
+
+You can't just add ```sudo``` to[JHipster's dockerfile](https://raw.githubusercontent.com/jhipster/generator-jhipster/master/Dockerfile) because it assumes you have the source in the current directory ... see this line
+``` Dockerfile
+COPY . /home/jhipster/generator-jhipster
+```
+
+So we start from scratch.
+
+I choose OpenSUSE out of personal preference. Since it's an official image you only need
 
 ``` dockerfile
-FROM ubuntu:xenial
+FROM opensuse:42.1
+```
 
+Now let's see [JHipster's installation instructions](https://jhipster.github.io/#quick)
+
+```Assuming you have already installed Java, Git, Node.js, Bower, Yeoman and Gulp```
+
+By ```Node.js``` they actually mean [npm - the node package manager](https://www.npmjs.com/).
+[Bower](), [Yeoman]() and [Gulp]() are node packages. Just as JHipster itself.
+
+OpenSUSE Leap 42.1's npm is a bit dated, which yield problems with the other packages. We can update it using ```npm``` itself.
+
+So we'll add
+``` dockerfile
 RUN \
-  # configure the "jhipster" user
+  zypper install --no-confirm \
+    java-1_8_0-openjdk-devel \
+    git \
+    npm
+
+RUN npm install --global npm
+RUN npm install --global bower yo gulp-cli generator-jhipster
+```
+
+While trying dockerfile so far I get permission errors, because Yeoman expects to be [run as user](https://github.com/yeoman/yo/issues/101). So let's add a basic user and run the container as this user:
+
+``` dockerfile
+RUN \
   groupadd user && \
-  useradd user -s /bin/bash -m -g user -G sudo && \
-  echo 'user:user' |chpasswd && \
+  useradd user -s /bin/bash -m -g user && \
+  chown -R user:user /home/user
 
-  # install open-jdk 8
-  apt-get update && \
-  apt-get install -y openjdk-8-jdk && \
+USER user
 
-  # install utilities
-  apt-get install -y \
-     wget \
-     curl \
-     vim \
-     git \
-     zip \
-     bzip2 \
-     fontconfig \
-     python \
-     g++ \
-     gksu \
-     openssh-server \
-     build-essential && \
+WORKDIR /home/user
+```
 
-  # install node.js
-  curl -sL https://deb.nodesource.com/setup_4.x | bash && \
-  apt-get install -y nodejs && \
+Now I can run yeoman, but JHipster's Maven wrapper(```mvnw```) fails because of missing ```${JAVA_HOME}```.
 
-  # upgrade npm
-  npm install -g npm && \
+Let's fix this:
+``` dockerfile
+Run \
+  echo "" >> /home/user/.bashrc ; \
+  echo "export JAVA_HOME=/etc/alternatives/java_sdk" >> /home/user/.bashrc ;  
+```
 
-  # install yeoman bower gulp
-  npm install -g \
-    yo \
-    bower \
-    gulp-cli && \
+So now we have a working dockerfile for JHipster that looks like this:
+``` dockerfile
+FROM opensuse:42.1
 
-  # cleanup
-  apt-get clean && \
-  rm -rf \
-    /var/lib/apt/lists/* \
-    /tmp/* \
-    /var/tmp/*
+RUN zypper install --no-confirm \
+  java-1_8_0-openjdk-devel \
+  git \
+  npm
+
+RUN npm install --global npm
+RUN npm install --global bower yo gulp-cli generator-jhipster
 
 RUN \
-  # install jhipster
-  npm install -g generator-jhipster
+  groupadd user && \
+  useradd user -s /bin/bash -m -g user && \
+  chown -R user:user /home/user
 
-RUN mkdir /projects
+Run \
+  echo "" >> /home/user/.bashrc ; \
+  echo "export JAVA_HOME=/etc/alternatives/java_sdk" >> /home/user/.bashrc ;
+
+USER user
+
+WORKDIR /home/user
+```
+
+#Halftime
+
+In CHE dockerfiles are called stacks. You can provide your own dockerfile/stack under
+
+Workspaces -> Add Workspace -> Custom Stack -> Write your own stack
+
+Copy and pasting the dockerfile above I get:
+```<blabla> No command specified```
+
+By looking at the [provided dockerfiles](https://github.com/codenvy/dockerfiles/) you can see that all of them end with
+``` dockerfile
+CMD tail -f /dev/null
+```
+and specify
+``` dockerfile
+WORKDIR /projects
+```
+
+Okay let's adapt.
+``` dockerfile
+RUN \
+  mkdir /projects && \
+  chown user:user /projects
+
+USER user
+
+WORKDIR /projects
+
+CMD tail -f /dev/null
+```
+
+and another error:
+```
+/bin/bash: unzip: command not found
+```
+so
+``` dockerfile
+RUN \
+  zypper install --no-confirm unzip
+```
+
+and another one:
+```
+/bin/bash: sudo: command not found
+```
+
+so add it and (taking the short route) allow ```user``` to use it
+``` dockerfile
+RUN \
+  zypper install --no-confirm \
+    unzip \
+    sudo
+
+RUN echo "%user ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers    
+```
+
+``` dockerfile
+RUN echo "%sudo ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
+
+RUN   echo 'user:user' |chpasswd
+
+RUN zypper in openssh
 
 RUN \
   # fix user permissions
   chown -R user:user \
     /projects \
-    /home/user \
-    /usr/lib/node_modules && \
-
-  # cleanup
-  rm -rf \
-    /var/lib/apt/lists/* \
-    /tmp/* \
-    /var/tmp/*
-
-RUN echo "%sudo ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers
-
-RUN \
-mkdir -p /var/run/sshd/etc; \
-cd /var/run/sshd/etc; \
-ln -s /etc/localtime localtime
-
-USER user
 
 WORKDIR /projects
 
 CMD sudo /usr/sbin/sshd -D && \
     tail -f /dev/null
 ```
+
+So now we got a first running version.
+
+
 
 Edit Commands -> Custom ->
 
@@ -126,3 +202,9 @@ TODO:
 * create CMD for ```yo jhipster```
 * fix CMD for Maven wrapper ```./mvnw``` (or ```spring-boot:run``` + packaging aka ```mvn clean install```)
 * maybe ```curl``` whole workspace (with commands)
+
+* also install Maven for ```mvn spring-boot:run```
+
+
+Additional notes:
+* [JHipster in Docker Hub](https://hub.docker.com/r/jhipster/jhipster/)
