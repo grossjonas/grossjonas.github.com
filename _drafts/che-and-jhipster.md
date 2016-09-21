@@ -179,9 +179,9 @@ RUN \
   useradd user -s /bin/bash -m -g user && \
   chown -R user:user /home/user
 
-Run \
+RUN \
   echo "" >> /home/user/.bashrc && \
-  echo "export JAVA_HOME=/etc/alternatives/java_sdk" >> /home/user/.bashrc ;
+  echo "export JAVA_HOME=/etc/alternatives/java_sdk" >> /home/user/.bashrc
 
 RUN \
   mkdir /projects && \
