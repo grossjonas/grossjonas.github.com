@@ -249,7 +249,52 @@ TODO:
 
 Additional notes:
 * [JHipster in Docker Hub](https://hub.docker.com/r/jhipster/jhipster/)
+* [stackoverflow docker clean up](http://stackoverflow.com/questions/17665283/how-does-one-remove-an-image-in-docker)
+``` bash
+docker rm $(docker ps -a -q)
+docker rmi -f $(docker images -q)
+```
 
 ```
 yo jhipster && gulp install
-``` 
+```
+
+``` Dockerfile
+FROM alpine:3.4
+
+RUN \
+  apk upgrade --update && \
+
+  apk add sudo && \
+  apk add bash && \
+  apk add unzip && \
+
+  apk add openjdk8 && \
+  apk add git && \
+  apk add nodejs-lts && \
+
+  npm install --global npm && \
+
+  npm install --global bower && \
+  npm install --global gulp-cli && \
+  npm install --global yo && \
+
+  npm install --global generator-jhipster && \
+
+  adduser -s /bin/ash -G wheel -D user && \
+  echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
+
+  mkdir /projects && \
+  chown user:wheel /projects && \
+
+  echo "export JAVA_HOME=/usr/lib/jvm/default-jvm" >> /home/user/.bashrc && \
+  chown user:wheel /home/user/.bashrc
+
+USER user
+
+WORKDIR /projects
+
+CMD tail -f /dev/null
+
+```
+/usr/lib/jvm/default-jvm
