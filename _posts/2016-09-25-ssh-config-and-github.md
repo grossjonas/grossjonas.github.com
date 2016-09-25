@@ -34,12 +34,14 @@ For some remote machine this might invoke using ```ssh-copy-id``` or adding your
 
 
 My last step is adding the key to ```~/.ssh/config```, like this:
+
 ```
 Host github.com
   IdentityFile ~/.ssh/github
 ```
 
 There are many other parameters. Just look at
+
 ```
 man ssh_config
 ```
