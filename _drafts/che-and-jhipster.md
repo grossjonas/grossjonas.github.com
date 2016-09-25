@@ -285,9 +285,22 @@ RUN \
   echo "%wheel ALL=(ALL) NOPASSWD: ALL" >> /etc/sudoers && \
 
   mkdir /projects && \
-  chown user:wheel /projects && \
+  chown user:wheel /projects
 
+ENV \
+  MAVEN_VERSION=3.3.9
+
+RUN \
+  cd /tmp && \
+  wget -q "http://apache.ip-connect.vn.ua/maven/maven-3/$MAVEN_VERSION/binaries/apache-maven-$MAVEN_VERSION-bin.tar.gz" && \
+  tar -xzf "apache-maven-$MAVEN_VERSION-bin.tar.gz" && \
+  mv "/tmp/apache-maven-$MAVEN_VERSION" "/usr/lib" && \
+  rm -rf "/tmp/apache-maven-$MAVEN_VERSION"
+
+RUN \
+  echo "export M2_HOME=/usr/lib/apache-maven-$MAVEN_VERSION " && \
   echo "export JAVA_HOME=/usr/lib/jvm/default-jvm" >> /home/user/.bashrc && \
+  echo "export PATH=${PATH}:${JAVA_HOME}/bin:${M2_HOME}/bin" >> /home/user/.bashrc && \
   chown user:wheel /home/user/.bashrc
 
 USER user
@@ -295,6 +308,5 @@ USER user
 WORKDIR /projects
 
 CMD tail -f /dev/null
-
 ```
 /usr/lib/jvm/default-jvm
