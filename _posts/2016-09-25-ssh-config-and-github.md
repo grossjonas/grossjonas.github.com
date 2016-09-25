@@ -14,6 +14,7 @@ So let's play this through with github as example.
 It is about time to move to elliptic curves. A great write up about it is [here](https://blog.g3rt.nl/upgrade-your-ssh-keys.html). That's where I got the ```ssh-keygen``` parameters from.
 
 With all that in mind I start with a terminal on local machine:
+
 ``` bash
 KEY_FILE="~/.ssh/github"
 ssh-keygen -o -a 100 -t ed25519 -f ${KEY_FILE}
@@ -23,6 +24,7 @@ ssh-add ${KEY_FILE}
 ```
 
 The next step is adding your key to github. Github has a nice tutorial using ```xclip``` [here](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/). It boils down to
+
 ``` bash
 xclip -sel clip < ~/.ssh/id_rsa.pub
 ```

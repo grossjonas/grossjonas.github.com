@@ -137,10 +137,12 @@ CMD tail -f /dev/null
 ```
 
 and another error:
+
 ```
 /bin/bash: unzip: command not found
 ```
 so
+
 ``` dockerfile
 RUN \
   zypper install --no-confirm unzip
@@ -152,6 +154,7 @@ and another one:
 ```
 
 so add it and (taking the short route) allow ```user``` to use it
+
 ``` dockerfile
 RUN \
   zypper install --no-confirm \
