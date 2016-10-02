@@ -6,7 +6,6 @@ title: S.O.L.I.D. principle
 # Overview
 According to [Wikipedia](https://en.wikipedia.org/wiki/SOLID_(object-oriented_design)) []
 
-
 # Single responsibility principle
 
 # Open/closed principle
