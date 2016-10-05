@@ -8,4 +8,6 @@ title: salt notes
 [Official](https://docs.saltstack.com/en/latest/topics/installation/index.html)
 
 
-https://docs.saltstack.com/en/latest/topics/tutorials/walkthrough.html
+[walkthrough](https://docs.saltstack.com/en/latest/topics/tutorials/walkthrough.html)
+
+[NetAPI](https://docs.saltstack.com/en/latest/topics/netapi/index.html)
