@@ -13,7 +13,7 @@ Replace `libbass.so` with the extracted version from
 like this (`${xulima_installation_dir}` might be something like `/home/user/GOG Games/Lords of Xulima`)
 
 ``` bash
-cd ${xulima_installation_dir}/game
+cd "${xulima_installation_dir}/game"
 mv libbass.so libbass.so.original.backUp
 
 mkdir -p /tmp/bass24-linux
@@ -21,20 +21,20 @@ cd /tmp/bass24-linux
 wget "http://www.un4seen.com/files/bass24-linux.zip"
 unzip bass24-linux.zip
 
-cp x64/libbass.so ${xulima_installation_dir}/game/
+cp x64/libbass.so "${xulima_installation_dir}/game/"
 ```
 
 then
 
 ``` bash
-cd ${xulima_installation_dir}/game
+cd "${xulima_installation_dir}/game"
 mono LoX.exe
 ```
 
 if that succeeds
 
 ``` bash
-cd ${xulima_installation_dir}
+cd "${xulima_installation_dir}"
 mv start.sh start.sh.original.backUp
 
 cat << EOF > start.sh
