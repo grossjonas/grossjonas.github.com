@@ -16,8 +16,8 @@ It is about time to move to elliptic curves. A great write up about it is [here]
 With all that in mind I start with a terminal on local machine:
 
 ``` bash
-KEY_FILE="~/.ssh/github"
-ssh-keygen -o -a 100 -t ed25519 -f ${KEY_FILE}
+KEY_FILE="${HOME}/.ssh/github"
+ssh-keygen -o -a 100 -t ed25519 -f "${KEY_FILE}"
 # On "Enter passphrase (empty for no passphrase): " type a good (== long) passphrase
 ssh-add ${KEY_FILE}
 # Now you enter your passphrase again for convient storage in ssh-agent
@@ -26,7 +26,7 @@ ssh-add ${KEY_FILE}
 The next step is adding your key to github. Github has a nice tutorial using ```xclip``` [here](https://help.github.com/articles/adding-a-new-ssh-key-to-your-github-account/). It boils down to
 
 ``` bash
-xclip -sel clip < ~/.ssh/id_rsa.pub
+xclip -sel clip < "${KEY_FILE}.pub"
 ```
 and pasting it in the right place on their website.
 
