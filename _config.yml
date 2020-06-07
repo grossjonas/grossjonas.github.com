@@ -15,4 +15,4 @@ kramdown:
   input: GFM
   syntax_highlighter: rouge
 
-gems: ['jekyll-feed', 'jekyll-paginate']
+plugins: ['jekyll-feed', 'jekyll-paginate']
