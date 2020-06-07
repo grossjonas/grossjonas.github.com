@@ -1,4 +1,5 @@
-[WIP]
+My personal blog
 
-fill me
+uses [jekyll-compose plugin](https://github.com/jekyll/jekyll-compose)
 
+[link to site](http://grossjonas.github.io/)

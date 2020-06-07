@@ -24,5 +24,5 @@ and insert this line
 */5 * * * * DISPLAY=:0.0 dwall -o firewatch >> /tmp/dwallwrapper.log
 ```
 
-This checks to wallpaper every 5 minutes.
+This checks for the right wallpaper every 5 minutes.
 So sit back and enjoy.
