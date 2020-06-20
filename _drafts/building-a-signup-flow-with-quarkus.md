@@ -7,18 +7,14 @@ title: building a login flow with quarkus
 
 select for now:
 RESTEasy JSON-B
+Hibernate Validator
+
 SmallRye JWT
 SmallRye OpenAPI
 
 JDBC Driver - H2
 Hibernate ORM with Panache
-Hibernate Validator
 
-
-maybe later:
-Mailer - some mock is fine for now
-RESTEasy JAXB
-Flyway
 
 A new WorkFlow for me
 ``` bash
@@ -144,7 +140,7 @@ class JsonWebEncryptionService {
 
     @Inject
     public JsonWebEncryptionService(
-            @ConfigProperty(name = "mp.jwt.verify.publickey") String jwkAsString,
+            @ConfigProperty(name = "jwt.encryption.privatekey") String jwkAsString,
             @ConfigProperty(name = "jwt.encryption.algorithm.header.identifier") String encryptionHeader,
             @ConfigProperty(name = "jwt.encryption.algorithm.content.identifier") String encryptionContent
     ){
@@ -204,13 +200,22 @@ class JsonWebEncryptionService {
 }
 ```
 
+
+Supported Mappings:
+for Header:
+KeyManagementAlgorithmIdentifiers.A128KW
+
+for Content:
+ContentEncryptionAlgorithmIdentifiers.AES_128_CBC_HMAC_SHA_256
+
 ``` properties
 quarkus.datasource.db-kind=h2
 quarkus.datasource.jdbc.url=jdbc:h2:file:./dev.db
 quarkus.hibernate-orm.database.generation=drop-and-create
 mp.jwt.verify.publickey=asdf
-jwt.encryption.algorithm.header.identifier=asdf
-jwt.encryption.algorithm.content.identifier=asdf
+jwt.encryption.privatekey=asasdf
+jwt.encryption.algorithm.header.identifier=A256KW
+jwt.encryption.algorithm.content.identifier=A128CBC-HS256
 ```
 
 UserEntity
@@ -305,7 +310,7 @@ document.addEventListener("DOMContentLoaded", event => {
         });
 ```
 
-Login
+login.html
 ``` html
 <!DOCTYPE html>
 <html lang="en">
@@ -431,23 +436,50 @@ class ApiResource {
 ```
 
 
-JWK generation for mp.jwt.verify.publickey
+KeyGeneratorUtilTest
 ``` java
-KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
-keyPairGenerator.initialize(3 * 1024);
-KeyPair keyPair = keyPairGenerator.generateKeyPair();
+package de.grossjonas.signup;
 
-JsonWebKey jsonWebKey = JsonWebKey.Factory.newJwk(keyPair.getPublic());
-String jwkAsJsonString = jsonWebKey.toJson();
-```
+import org.hamcrest.Matchers;
+import org.jose4j.jwk.JsonWebKey;
+import org.jose4j.lang.JoseException;
+import org.junit.jupiter.api.Test;
 
-JWK generation for SignUp 
-``` java
-KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
-keyGenerator.init(256);
-SecretKey secretKey = keyGenerator.generateKey();
+import javax.crypto.KeyGenerator;
+import javax.crypto.SecretKey;
+import java.security.KeyPair;
+import java.security.KeyPairGenerator;
+import java.security.NoSuchAlgorithmException;
 
-JsonWebKey jsonWebKey = JsonWebKey.Factory.newJwk(secretKey);
-String jwkAsJsonString = jsonWebKey.toJson();
+import static org.hamcrest.MatcherAssert.assertThat;
+
+public class KeyGeneratorUtilTest {
+    @Test
+    void rsa() throws NoSuchAlgorithmException, JoseException {
+        KeyPairGenerator keyPairGenerator = KeyPairGenerator.getInstance("RSA");
+        keyPairGenerator.initialize(3 * 1024);
+        KeyPair keyPair = keyPairGenerator.generateKeyPair();
+
+        JsonWebKey jsonWebKey = JsonWebKey.Factory.newJwk(keyPair.getPublic());
+        String jwkAsJsonString = jsonWebKey.toJson();
+
+        // for mp.jwt.verify.publickey=
+        assertThat(jwkAsJsonString, Matchers.notNullValue());
+    }
+
+    @Test
+    void aes() throws NoSuchAlgorithmException, JoseException {
+        KeyGenerator keyGenerator = KeyGenerator.getInstance("AES");
+        keyGenerator.init(256);
+        SecretKey secretKey = keyGenerator.generateKey();
+
+        JsonWebKey jsonWebKey = JsonWebKey.Factory.newJwk(secretKey);
+        String jwkAsJsonString = jsonWebKey.toJson();
+
+        // for jwt.encryption.privatekey=
+        assertThat(jwkAsJsonString, Matchers.notNullValue());
+    }
+}
+
 ```
 
