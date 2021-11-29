@@ -1,3 +1,5 @@
 _site/*
 .idea
 /.idea/grossjonas.github.com.iml
+.bundle/*
+vendor/*
