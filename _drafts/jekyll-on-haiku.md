@@ -33,3 +33,9 @@ gem install --user-install jekyll
 ~> tail config/settings/profile
 export PATH="/boot/home/.gem/ruby/2.7.0/bin:${PATH}"
 ```
+
+Bonus
+
+``` bash
+bundle exec jekyll serve --drafts --future
+```
