@@ -3,38 +3,33 @@ layout: post
 title: Jekyll on haiku
 ---
 
-gem install --user-install bundler jekyll
+``` bash
+gem install --user-install bundler
 bundle config set --local path 'vendor/bundle'
 bundle install
 
-linux:
-bundle exec /home/jonas/.gem/ruby/2.7.0/bin/jekyll.ruby2.7 serve
+# https://nokogiri.org/tutorials/installing_nokogiri.html#installing-using-standard-system-libraries
 
-haiku maybe:
-https://gist.github.com/sobstel/f6a490d854a2e5a214c3f2cd9c366032
-
-
-/boot/system/develop/lib
-/boot/system/develop/headers/libxml2/libxml
-
-https://nokogiri.org/tutorials/installing_nokogiri.html#installing-using-standard-system-libraries
+pkgman install libxslt
+pkgman install libxslt_devel
+pkgman install libxml2
+pkgman install libxml2_devel
 
 gem install --user-install nokogiri --platform=ruby -- --use-system-libraries \
-                                                      --with-xml2-lib=/usr/local/lib \
-                                                             --with-xml2-include=/usr/local/include/libxml2/libxml
-                                                             gem install --user-install nokogiri --platform=ruby -- --use-system-libraries \
-                                                                                                                   --with-xml2-lib=/boot/system/develop/lib \
-                                                                                                                          --with-xml2-include=/boot/system/develop/headers/libxml2/libxml \
-                                                                                                                                --with-xslt-lib= /boot/system/develop/lib \
-                                                                                                                                      --with-xslt-include=/boot/system/develop/headers/libxslt
+    --with-xml2-lib=/boot/system/develop/lib \
+    --with-xml2-include=/boot/system/develop/headers/libxml2/libxml \
+    --with-xslt-lib= /boot/system/develop/lib \
+    --with-xslt-include=/boot/system/develop/headers/libxslt
 
-                                                                                                                                      pkgman install libxslt_devel
+bundle config build.nokogiri \
+    --use-system-libraries \
+    --with-xml2-lib=/boot/system/develop/lib \
+    --with-xml2-include=/boot/system/develop/headers/libxml2/libxml \
+    --with-xslt-lib= /boot/system/develop/lib \
+    --with-xslt-include=/boot/system/develop/headers/libxslt
 
-                                                                                                                                      bundle config build.nokogiri \
-                                                                                                                                               --use-system-libraries \
-                                                                                                                                                      --with-xml2-lib=/boot/system/develop/lib \
-                                                                                                                                                             --with-xml2-include=/boot/system/develop/headers/libxml2/libxml \
-                                                                                                                                                                   --with-xslt-lib= /boot/system/develop/lib \
-                                                                                                                                                                         --with-xslt-include=/boot/system/develop/headers/libxslt
+gem install --user-install jekyll
 
-
+~> tail config/settings/profile
+export PATH="/boot/home/.gem/ruby/2.7.0/bin:${PATH}"
+```
