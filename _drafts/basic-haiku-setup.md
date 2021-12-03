@@ -39,12 +39,13 @@ vim
 ToDo: text here!
 
 ``` bash
+mkdir /boot/home/config/settings/ssh
 cd /boot/home/config/settings/ssh
-cd /boot/home/config/settings/ssh> ssh-keygen -o -a 100 -t ed25519 -f github
-cd /boot/home/config/settings/ssh> cat github.pub
-ssh-ed25519 ABC<not some many letters>abc user@shredder
-cd /boot/home/config/settings/ssh> tail config
-Host github.com
-    IdentityFile ~/config/settings/ssh/github
+ssh-keygen -o -a 100 -t ed25519 -f github
+cat github.pub
+# ssh-ed25519 ABC<not some many letters>abc user@shredder
+tail config
+# Host github.com
+#    IdentityFile ~/config/settings/ssh/github
 ```
 
