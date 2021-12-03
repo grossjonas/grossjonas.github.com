@@ -34,7 +34,7 @@ vim
 #mv .local/share/fonts/* /system/non-packaged/data/fonts/ttfonts/
 ```
 
-## git
+## ssh & git
 
 ToDo: text here!
 
