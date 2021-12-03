@@ -10,16 +10,28 @@ In fact so much fun that I wanted to write about it ... even that long of a paus
 
 ToDo: text here!
 
+``` bash
+pkgman update
+shutdown -r
+pkgman install -y git vim
+pkgman install falkon
+```
+
 ## spacevim
 
 ToDo: text here!
 
 ``` bash
 cd $HOME
-curl -sLf https://spacevim.org/install.sh | bash
+curl -sLf https://spacevim.org/install.sh | bash -s -- --checkRequirements
+curl -sLf https://spacevim.org/install.sh | bash -s -- --install vim
 mv .vim config/setting/vim
-mkdir /system/non-packaged/data/fonts/ttfonts
-mv .local/share/fonts/* /system/non-packaged/data/fonts/ttfonts/
+vim 
+# select prefered mode and :q
+vim
+# to install plugins
+#mkdir /system/non-packaged/data/fonts/ttfonts
+#mv .local/share/fonts/* /system/non-packaged/data/fonts/ttfonts/
 ```
 
 ## git
