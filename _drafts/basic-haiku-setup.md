@@ -9,6 +9,8 @@ In fact so much fun that I wanted to write about it ... even that long of a paus
 # basics
 
 ToDo: text here!
+C & Posix 
+https://www.haiku-os.org/docs/api/libroot.html
 
 ``` bash
 pkgman update
